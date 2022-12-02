@@ -1,10 +1,13 @@
 version: 0.2
 
 phases:
-  install:
+  pre_build:
     commands:
+      - echo Installing source NPM dependencies...
       - npm install
-      - pip3 install --upgrade awscli
-  artifacts:
-    files:
-      - '**/*'
+artifacts:
+  files:
+    - dist/**/*
+    - package.json
+    - package-lock.json
+    - node_modules/**/*
