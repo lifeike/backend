@@ -1,14 +1,14 @@
 import { Router } from "express";
 
-import AuthRouter from "./auth.route";
-
 // Init router
 const router = Router();
 
 /**
  * Child Routes
  */
-router.use("/auth", AuthRouter);
+app.use("/", require("./routes/index"))
+app.use("/auth", require("./routes/auth"))
+app.use("/user", require("./routes/user"))
 
 /**
  * Default handler - mainly for testing
