@@ -9,6 +9,5 @@ client.connect()
 console.log("Connected successfully to server")
 
 const db = client.db("template")
-const collection = db.collection("users")
 
-module.exports = { db, collection }
+module.exports = db

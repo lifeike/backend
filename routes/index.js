@@ -1,10 +1,10 @@
 const express = require("express")
 const router = express.Router()
 const path = require("path")
-const { db, collection } = require("../db")
+const db = require("../db")
 
 router.get("/", async function (req, res) {
-  const findResult = await db.collection("documents").find({}).toArray()
+  const findResult = await db.collection("users").find({}).toArray()
   // console.log("Found documents =>", findResult)
   res.send(findResult)
 })

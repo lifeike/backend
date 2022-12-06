@@ -2,7 +2,7 @@ const express = require("express")
 const jwt = require("jsonwebtoken")
 const router = express.Router()
 const path = require("path")
-const { db, collection } = require("../db")
+const db = require("../db")
 
 router.post("/signIn", async function (req, res) {
   let payload = {
