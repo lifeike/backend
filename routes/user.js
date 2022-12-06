@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const path = require("path")
-const verify = require("../routes/authVerify")
+const verify = require("../middlewares/authVerify")
 const db = require("../db")
 
 router.get("/getUser", verify, async function (req, res) {
