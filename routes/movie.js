@@ -5,13 +5,13 @@ const verify = require("../middlewares/authVerify")
 const db = require("../db")
 
 router.get("/getMovies", verify, async function (req, res) {
-  const findResult = await db.collection("users").find({}).toArray()
+  const findResult = await db.collection("movies").find({}).toArray()
   // console.log("Found documents =>", findResult)
   res.send(findResult)
 })
 
 router.post("/addMovie", function (req, res) {
-  db.collection("users").insertOne(req.body, function (err, result) {
+  db.collection("movies").insertOne(req.body, function (err, result) {
     if (err) {
       res.status(400).send("Error inserting matches!")
     } else {
@@ -21,7 +21,7 @@ router.post("/addMovie", function (req, res) {
 })
 
 router.put("/updateMovie", function (req, res) {
-  db.collection("users").updateOne(
+  db.collection("movies").updateOne(
     { first_name: req.body.first_name },
     {
       $set: {
