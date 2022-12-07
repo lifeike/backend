@@ -4,7 +4,7 @@ const path = require("path")
 const verify = require("../middlewares/authVerify")
 const db = require("../db")
 
-router.get("/movies", verify, async function (req, res) {
+router.get("/getMovies", verify, async function (req, res) {
   const findResult = await db.collection("users").find({}).toArray()
   // console.log("Found documents =>", findResult)
   res.send(findResult)
