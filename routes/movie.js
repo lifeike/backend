@@ -3,6 +3,7 @@ const router = express.Router()
 const path = require("path")
 const verify = require("../middlewares/authVerify")
 const db = require("../db")
+const { ObjectID, ObjectId } = require("bson")
 
 router.get("/getMovies", verify, async function (req, res) {
   //pagination receive two params: items_per_page
@@ -22,32 +23,9 @@ router.get("/getMovies", verify, async function (req, res) {
   }
 })
 
-router.post("/addMovie", function (req, res) {
-  db.collection("movies").insertOne(req.body, function (err, result) {
-    if (err) {
-      res.status(400).send("Error inserting matches!")
-    } else {
-      res.send(result.insertedId)
-    }
-  })
-})
-
-router.put("/updateMovie", function (req, res) {
-  db.collection("movies").updateOne(
-    { first_name: req.body.first_name },
-    {
-      $set: {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        gender: req.body.gender,
-        ip_address: req.body.ip_address,
-      },
-    },
-    function (req, result) {
-      res.send("updated")
-    }
-  )
+router.post("/findOneMovie", verify, async function (req, res) {
+  const movie = await db.collection("movies").findOne({ _id: ObjectId(req.body.id) })
+  res.send(movie)
 })
 
 router.delete("/deleteMovie", function (req, res) {
