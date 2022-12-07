@@ -13,7 +13,7 @@ app.use(bodyParser.json())
 app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/user", require("./routes/user"))
-app.use("/moive", require("./routes/movie"))
+app.use("/movie", require("./routes/movie"))
 
 app.get("/cancel", async function (req, res) {
   setTimeout(() => {
