@@ -33,10 +33,9 @@ router.post("/updateMovie/:id", verify, async (req, res) => {
   res.send(movie)
 })
 
-router.delete("/deleteMovie", function (req, res) {
-  db.collection("users").deleteMany({ name: req.body.name }, function (req, result) {
-    res.send("deleted.")
-  })
+router.delete("/deleteMovie/:id", async function (req, res) {
+  const movie = await db.collection("movies").findOneAndDelete({ _id: ObjectId(req.params.id) })
+  res.send(movie)
 })
 
 module.exports = router
