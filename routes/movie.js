@@ -28,6 +28,13 @@ router.post("/findOneMovie", verify, async function (req, res) {
   res.send(movie)
 })
 
+router.post("/updateMovie/:id", verify, async () => {
+  console.log(id)
+  console.log(req.body)
+  // const movie = await db.collection("movies").findOneAndUpdate({ _id: ObjectId(id) }, req.body)
+  // res.send(movie)
+})
+
 router.delete("/deleteMovie", function (req, res) {
   db.collection("users").deleteMany({ name: req.body.name }, function (req, result) {
     res.send("deleted.")
