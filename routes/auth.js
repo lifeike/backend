@@ -29,6 +29,20 @@ router.post("/signIn", async function (req, res) {
 })
 
 router.post("/refresh-token", async function (req, res) {
-  console.log(req.body)
+  let refresh_token = req.body.refresh_token
+  let access_token_payload = {
+    iss: "feeco",
+    exp: Math.floor(Date.now() / 1000) + 60 * 2,
+    iat: new Date().getTime(),
+    aud: "www.test.com",
+    type: "access-token",
+  }
+
+  try {
+    let access_token = jwt.sign(access_token_payload, "secret")
+    res.send({ access_token, refresh_token, user: { name: "feeco", age: 30 } })
+  } catch (error) {
+    res.status(401).send("invalid refresh token.")
+  }
 })
 module.exports = router
