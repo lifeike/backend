@@ -32,7 +32,7 @@ router.post("/refresh-token", async function (req, res) {
   let refresh_token = req.body.refresh_token
   let access_token_payload = {
     iss: "feeco",
-    exp: Math.floor(Date.now() / 1000) + 60 * 2,
+    exp: Math.floor(Date.now() / 1000) + 60 * 60,
     iat: new Date().getTime(),
     aud: "www.test.com",
     type: "access-token",
@@ -41,6 +41,7 @@ router.post("/refresh-token", async function (req, res) {
   try {
     let access_token = jwt.sign(access_token_payload, "secret")
     res.send({ access_token, refresh_token, user: { name: "feeco", age: 30 } })
+    // throw new Error("hello world")
   } catch (error) {
     res.status(401).send("invalid refresh token.")
   }
