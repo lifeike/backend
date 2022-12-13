@@ -9,7 +9,7 @@ router.post("/signIn", async function (req, res) {
 
   let payload = {
     iss: "feeco",
-    exp: Math.floor(Date.now() / 1000) + 60 * 2,
+    exp: Math.floor(Date.now() / 1000) + 60 * 1,
     iat: new Date().getTime(),
     aud: "www.test.com",
   }
