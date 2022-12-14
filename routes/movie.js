@@ -33,9 +33,9 @@ router.post("/updateMovie/:id", verify, async (req, res) => {
   res.send(movie)
 })
 
-router.delete("/deleteMovie/:id", async function (req, res) {
+router.delete("/deleteMovie/:id", verify, async function (req, res) {
   const movie = await db.collection("movies").findOneAndDelete({ _id: ObjectId(req.params.id) })
-  res.send(movie)
+  res.send({ message: "You have successfully deleted this item." })
 })
 
 module.exports = router
