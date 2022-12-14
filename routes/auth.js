@@ -39,7 +39,7 @@ router.post("/refresh-token", async function (req, res) {
   }
 
   try {
-    //verify refresh token first
+    //verify refresh token first, if no error, continue
     const decoded = jwt.verify(refresh_token, "secret")
     let access_token = jwt.sign(access_token_payload, "secret")
     res.send({ access_token, refresh_token, user: { name: "feeco", age: 30 } })
