@@ -7,15 +7,15 @@ const db = require("../db")
 router.post("/signIn", async function (req, res) {
   let access_token_payload = {
     iss: "feeco",
-    exp: Math.floor(Date.now() / 1000) + 60 * 1, //60 seconds
-    iat: new Date().getTime(),
+    exp: Math.floor(Date.now() / 1000) + 60,
+    iat: Math.floor(Date.now() / 1000),
     aud: "www.test.com",
     type: "access-token",
   }
   let refresh_token_payload = {
     iss: "feeco",
-    exp: Math.floor(Date.now() / 1000) + 60 * 60, //1hour
-    iat: new Date().getTime(),
+    exp: Math.floor(Date.now() / 1000) + 60 * 2,
+    iat: Math.floor(Date.now() / 1000),
     aud: "www.test.com",
     type: "refresh-token",
   }
@@ -32,8 +32,8 @@ router.post("/refresh-token", async function (req, res) {
   let refresh_token = req.body.refresh_token
   let access_token_payload = {
     iss: "feeco",
-    exp: Math.floor(Date.now() / 1000) + 30, //30 seconds
-    iat: new Date().getTime(),
+    exp: Math.floor(Date.now() / 1000) + 30,
+    iat: Math.floor(Date.now() / 1000),
     aud: "www.test.com",
     type: "access-token",
   }
