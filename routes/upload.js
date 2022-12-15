@@ -49,4 +49,9 @@ router.post("/store-image-aws-s3", uploadToS3.array("uploaded-images"), async (r
   res.send(insertResult)
 })
 
+router.get("/get-all-uploaded-images", verify, async (req, res) => {
+  const images = await db.collection("images").find({}).toArray()
+  res.send(images)
+})
+
 module.exports = router
