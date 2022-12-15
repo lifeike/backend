@@ -14,6 +14,7 @@ app.use("/", require("./routes/index"))
 app.use("/auth", require("./routes/auth"))
 app.use("/user", require("./routes/user"))
 app.use("/movie", require("./routes/movie"))
+app.use("/upload", require("./routes/upload"))
 
 app.get("/cancel", async function (req, res) {
   setTimeout(() => {
