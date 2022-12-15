@@ -7,6 +7,7 @@ const { v4: uuidv4 } = require("uuid")
 const multer = require("multer")
 
 router.post("/store-image-locally", multer({ dest: "./uploadImages/" }).array("uploaded-images"), async (req, res) => {
+  //in backend source code folder ./uploadImages/
   console.log(req.files)
   console.log(req.body)
   res.send("ok")
