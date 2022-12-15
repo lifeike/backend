@@ -16,24 +16,37 @@ router.post("/store-image-locally", uploadLocally.array("uploaded-images"), asyn
   res.send("ok")
 })
 
-const s3 = new S3Client()
+let s3 = new S3Client({
+  region: "ca-central-1",
+  credentials: {
+    accessKeyId: "AKIARBXBS625SO2IKA57",
+    secretAccessKey: "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",
+  },
+  sslEnabled: false,
+  s3ForcePathStyle: true,
+  signatureVersion: "v4",
+})
 const uploadToS3 = multer({
   storage: multerS3({
     s3: s3,
-    bucket: "some-bucket",
+    bucket: "feeco-backend-bucket",
+    contentType: multerS3.AUTO_CONTENT_TYPE, //important !!
     metadata: function (req, file, cb) {
+      console.log(file.size)
       cb(null, { fieldName: file.fieldname })
     },
     key: function (req, file, cb) {
+      console.log(file.size)
       cb(null, Date.now().toString())
     },
   }),
 })
 
 router.post("/store-image-aws-s3", uploadToS3.array("uploaded-images"), async (req, res) => {
-  console.log(res.files)
-  console.log(res.files.location)
-  res.send("ok")
+  console.log(req.files)
+  //uploaded files location is url,  store url mongo atlas
+  const insertResult = await db.collection("images").insertMany([...req.files])
+  res.send(insertResult)
 })
 
 module.exports = router
