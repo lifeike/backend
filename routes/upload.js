@@ -7,7 +7,7 @@ const db = require("../db")
 const { v4: uuidv4 } = require("uuid")
 const multer = require("multer")
 
-router.post("/image", multer({ dest: "~/test/" }).array("customFile"), async (req, res) => {
+router.post("/image", multer({ dest: "~/test/" }).array("uploaded-images"), async (req, res) => {
   // const { image } = req.body
   // const url = await uploadToS3(image, uuidv4())
   // return res.json({ url })
