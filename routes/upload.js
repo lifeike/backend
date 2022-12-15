@@ -8,14 +8,15 @@ const multer = require("multer")
 const { S3Client } = require("@aws-sdk/client-s3")
 const multerS3 = require("multer-s3")
 
+//1. in backend source code folder ./uploadImages/
 const uploadLocally = multer({ dest: "./uploadImages/" })
 router.post("/store-image-locally", uploadLocally.array("uploaded-images"), async (req, res) => {
-  //in backend source code folder ./uploadImages/
   console.log(req.files)
   console.log(req.body)
   res.send("ok")
 })
 
+//2. uploaded files location is url,  store url mongo atlas
 let s3 = new S3Client({
   region: "ca-central-1",
   credentials: {
@@ -44,7 +45,6 @@ const uploadToS3 = multer({
 
 router.post("/store-image-aws-s3", uploadToS3.array("uploaded-images"), async (req, res) => {
   console.log(req.files)
-  //uploaded files location is url,  store url mongo atlas
   const insertResult = await db.collection("images").insertMany([...req.files])
   res.send(insertResult)
 })
