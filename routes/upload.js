@@ -45,8 +45,17 @@ const uploadToS3 = multer({
 
 router.post("/store-image-aws-s3", uploadToS3.array("uploaded-images"), async (req, res) => {
   console.log(req.files)
-  const insertResult = await db.collection("images").insertMany([...req.files])
-  res.send(insertResult)
+  try {
+    if (req.files.length === 0) {
+      res.status(500).send("empty list")
+      return
+    } else {
+      const insertResult = await db.collection("images").insertMany([...req.files])
+      res.send(insertResult)
+    }
+  } catch (error) {
+    res.send(error.message)
+  }
 })
 
 router.get("/get-all-uploaded-images", verify, async (req, res) => {
