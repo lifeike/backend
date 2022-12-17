@@ -3,8 +3,7 @@ const jwt = require("jsonwebtoken")
 const router = express.Router()
 const path = require("path")
 const db = require("../db")
-// Load the AWS SDK for Node.js
-var AWS = require("aws-sdk")
+const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses")
 
 router.post("/signIn", async function (req, res) {
   let access_token_payload = {
@@ -61,9 +60,7 @@ router.post("/sign-up", async function (req, res) {
     res.send("Please check your email for verification code.")
   }
 
-  // Set the region
-  AWS.config.update({ region: "ca-central-1" })
-  // Create sendEmail params
+  const sesClient = new SESClient({ region: "ca-central-1" })
   var params = {
     Destination: {
       CcAddresses: ["524931087@qq.com"],
