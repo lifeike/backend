@@ -51,12 +51,12 @@ router.post("/refresh-token", async function (req, res) {
 
 router.post("/sign-up", async function (req, res) {
   //find duplicate email and return error or continue to send email for verification
-  console.log(req.body)
-  let result = db.collection("users").findOne({})
+  // console.log(req.body)
+  let result = await db.collection("users").findOne({ email: req.body.email })
   if (result) {
     res.status(428).send("Email already exist")
   } else {
-    res.send("Registered successfully.")
+    res.send("Please check your email for verification code.")
   }
 })
 
