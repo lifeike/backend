@@ -48,4 +48,14 @@ router.post("/refresh-token", async function (req, res) {
     res.status(401).send("invalid refresh token.")
   }
 })
+
+router.post("/sign-up", async function (req, res) {
+  //find duplicate email and return error or continue to send email for verification
+  console.log(req.body)
+})
+
+router.post("/complete-sign-up-verification", async function (req, res) {
+  //verify email and complete sign up
+})
+
 module.exports = router
