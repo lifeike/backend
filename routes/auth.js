@@ -61,41 +61,47 @@ router.post("/sign-up", async function (req, res) {
   }
 
   const sesClient = new SESClient({ region: "ca-central-1" })
-  var params = {
-    Destination: {
-      CcAddresses: ["524931087@qq.com"],
-      ToAddresses: ["lifeike67@gmail.com"],
-    },
-    Message: {
-      Body: {
-        Html: {
-          Charset: "UTF-8",
-          Data: "HTML_FORMAT_BODY",
+  const createSendEmailCommand = (toAddress, fromAddress) => {
+    return new SendEmailCommand({
+      Destination: {
+        /* required */
+        CcAddresses: [
+          /* more items */
+        ],
+        ToAddresses: [
+          toAddress,
+          /* more To-email addresses */
+        ],
+      },
+      Message: {
+        Body: {
+          Html: {
+            Charset: "UTF-8",
+            Data: "HTML_FORMAT_BODY",
+          },
+          Text: {
+            Charset: "UTF-8",
+            Data: "TEXT_FORMAT_BODY",
+          },
         },
-        Text: {
+        Subject: {
           Charset: "UTF-8",
-          Data: "TEXT_FORMAT_BODY",
+          Data: "EMAIL_SUBJECT",
         },
       },
-      Subject: {
-        Charset: "UTF-8",
-        Data: "Test email",
-      },
-    },
-    Source: "524931087@qq.com" /* required */,
-    ReplyToAddresses: [""],
+      Source: fromAddress,
+      ReplyToAddresses: [],
+    })
   }
 
-  // Create the promise and SES service object
-  var sendPromise = new AWS.SES({ apiVersion: "2010-12-01" }).sendEmail(params).promise()
-  // Handle promise's fulfilled/rejected states
-  await sendPromise
-    .then(function (data) {
-      console.log(data.MessageId)
-    })
-    .catch(function (err) {
-      console.error(err, err.stack)
-    })
+  //send request
+  const sendEmailCommand = createSendEmailCommand("lifeike67@gmail.com", "524931087@qq.com")
+  try {
+    return await sesClient.send(sendEmailCommand)
+  } catch (e) {
+    console.error("Failed to send email.")
+    return e
+  }
 })
 
 router.post("/complete-sign-up-verification", async function (req, res) {
