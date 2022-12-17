@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken")
 const router = express.Router()
 const path = require("path")
 const db = require("../db")
+const { v4: uuidv4 } = require("uuid")
 const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses")
 
 router.post("/signIn", async function (req, res) {
@@ -57,10 +58,24 @@ router.post("/sign-up", async function (req, res) {
   if (result) {
     res.status(428).send("Email already exist")
   } else {
+    //pending status user in the database
+    let insertResult = await db.collection("users").insertOne({
+      first_name: req.body.firstName,
+      last_name: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+      status: "waiting-for-verification-code",
+    })
     res.send("Please check your email for verification code.")
   }
 
-  const sesClient = new SESClient({ region: "ca-central-1" })
+  const sesClient = new SESClient({
+    region: "ca-central-1",
+    credentials: {
+      accessKeyId: "AKIARBXBS6257TGZ5IXS",
+      secretAccessKey: "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",
+    },
+  })
   const createSendEmailCommand = (toAddress, fromAddress) => {
     return new SendEmailCommand({
       Destination: {
@@ -77,7 +92,7 @@ router.post("/sign-up", async function (req, res) {
         Body: {
           Html: {
             Charset: "UTF-8",
-            Data: "HTML_FORMAT_BODY",
+            Data: `verification code ${uuidv4()}`,
           },
           Text: {
             Charset: "UTF-8",
@@ -94,18 +109,20 @@ router.post("/sign-up", async function (req, res) {
     })
   }
 
-  //send request
-  const sendEmailCommand = createSendEmailCommand("lifeike67@gmail.com", "524931087@qq.com")
+  //send verification to new register user
+  const sendEmailCommand = createSendEmailCommand(req.body.email, "lifeike67@gmail.com")
   try {
     return await sesClient.send(sendEmailCommand)
   } catch (e) {
     console.error("Failed to send email.")
+    console.log(e)
     return e
   }
 })
 
 router.post("/complete-sign-up-verification", async function (req, res) {
   //verify email and complete sign up
+  //change status of user to complete
 })
 
 module.exports = router
