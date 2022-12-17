@@ -23,10 +23,12 @@ router.post("/signIn", async function (req, res) {
   }
   let access_token = jwt.sign(access_token_payload, "secret")
   let refresh_token = jwt.sign(refresh_token_payload, "secret")
-  if (req.body.username == "feeco" && req.body.password == "li") {
-    res.send({ access_token, refresh_token, user: { name: "feeco", age: 30 } })
+  console.log(req.body.email, req.body.password)
+  let user = await db.collection("users").findOne({ email: req.body.email, password: req.body.password })
+  if (user) {
+    res.send({ access_token, refresh_token, user: user })
   } else {
-    res.status(401).send("invalid credentials.")
+    res.status(444).send("User not found.")
   }
 })
 
