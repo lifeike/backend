@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken")
 const router = express.Router()
 const path = require("path")
 const db = require("../db")
+// Load the AWS SDK for Node.js
+var AWS = require("aws-sdk")
 
 router.post("/signIn", async function (req, res) {
   let access_token_payload = {
@@ -58,6 +60,45 @@ router.post("/sign-up", async function (req, res) {
   } else {
     res.send("Please check your email for verification code.")
   }
+
+  // Set the region
+  AWS.config.update({ region: "ca-central-1" })
+  // Create sendEmail params
+  var params = {
+    Destination: {
+      CcAddresses: ["524931087@qq.com"],
+      ToAddresses: ["lifeike67@gmail.com"],
+    },
+    Message: {
+      Body: {
+        Html: {
+          Charset: "UTF-8",
+          Data: "HTML_FORMAT_BODY",
+        },
+        Text: {
+          Charset: "UTF-8",
+          Data: "TEXT_FORMAT_BODY",
+        },
+      },
+      Subject: {
+        Charset: "UTF-8",
+        Data: "Test email",
+      },
+    },
+    Source: "524931087@qq.com" /* required */,
+    ReplyToAddresses: [""],
+  }
+
+  // Create the promise and SES service object
+  var sendPromise = new AWS.SES({ apiVersion: "2010-12-01" }).sendEmail(params).promise()
+  // Handle promise's fulfilled/rejected states
+  await sendPromise
+    .then(function (data) {
+      console.log(data.MessageId)
+    })
+    .catch(function (err) {
+      console.error(err, err.stack)
+    })
 })
 
 router.post("/complete-sign-up-verification", async function (req, res) {
