@@ -3,7 +3,6 @@ const express = require("express")
 const cors = require("cors")
 var bodyParser = require("body-parser")
 
-
 const app = express()
 //app.use(cors())
 // parse application/x-www-form-urlencoded
@@ -16,6 +15,7 @@ app.use("/auth", require("./routes/auth"))
 app.use("/user", require("./routes/user"))
 app.use("/movie", require("./routes/movie"))
 app.use("/upload", require("./routes/upload"))
+app.use("/chat", require("./routes/chat"))
 
 app.get("/cancel", async function (req, res) {
   setTimeout(() => {
