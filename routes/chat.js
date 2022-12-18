@@ -4,7 +4,7 @@ const path = require("path")
 const db = require("../db")
 
 router.get("/", async function (req, res) {
-  // console.log("Found documents =>", findResult)
+  //get all
   res.send("chat")
 })
 
