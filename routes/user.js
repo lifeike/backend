@@ -11,7 +11,7 @@ router.get("/getUser", verify, async function (req, res) {
 })
 
 router.post("/addUser", function (req, res) {
-  collection.insertOne(req.body, function (err, result) {
+  db.collection("users").insertOne(req.body, function (err, result) {
     if (err) {
       res.status(400).send("Error inserting matches!")
     } else {
@@ -21,8 +21,7 @@ router.post("/addUser", function (req, res) {
 })
 
 router.put("/updateUser", function (req, res) {
-  console.log(req.body)
-  collection.updateOne(
+  db.collection("users").updateOne(
     { first_name: req.body.first_name },
     {
       $set: {
@@ -40,7 +39,7 @@ router.put("/updateUser", function (req, res) {
 })
 
 router.delete("/deleteUser", function (req, res) {
-  collection.deleteMany({ name: req.body.name }, function (req, result) {
+  db.collection("users").deleteMany({ name: req.body.name }, function (req, result) {
     res.send("deleted.")
   })
 })
