@@ -16,7 +16,7 @@ router.post("/signIn", async function (req, res) {
   }
   let refresh_token_payload = {
     iss: "feeco",
-    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 12,
+    exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24,
     iat: Math.floor(Date.now() / 1000),
     aud: "www.test.com",
     type: "refresh-token",
