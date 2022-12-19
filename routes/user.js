@@ -4,10 +4,17 @@ const path = require("path")
 const verify = require("../middlewares/authVerify")
 const db = require("../db")
 
+//fetch all users
 router.get("/getUser", verify, async function (req, res) {
   const findResult = await db.collection("users").find({}).toArray()
-  // console.log("Found documents =>", findResult)
   res.send(findResult)
+})
+
+//search user
+router.get("/search", async function (req, res) {
+  console.log(req.originalUrl)
+  console.log(req.query)
+  res.send("ok")
 })
 
 router.post("/addUser", function (req, res) {
