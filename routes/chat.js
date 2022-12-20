@@ -10,18 +10,21 @@ router.get("/", async function (req, res) {
 })
 
 router.post("/createChat", async function (req, res) {
-  //todo:
-  //createdAt,updatedAt,latestMessage
+  //todo: createdAt,updatedAt,latestMessage
   //find duplicated chat, if yes, dont create new chat
-  let existingChat = await db.collection("chats").findOne({ users: req.body.users })
+  let existingChat = await db.collection("chats").findOne({ users: [...req.body.users] })
+  console.log(existingChat)
   //use user id to create chat
-  console.log(req.body)
-  if (existingChat) {
+  if (!existingChat) {
     let result = await db.collection("chats").insertOne(req.body)
     res.send(result)
   } else {
     res.status(444).send("already exist")
   }
+})
+
+router.get("/getChatById/:id", async function (req, res) {
+  //
 })
 
 module.exports = router
