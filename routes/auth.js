@@ -23,7 +23,6 @@ router.post("/signIn", async function (req, res) {
   }
   let access_token = jwt.sign(access_token_payload, "secret")
   let refresh_token = jwt.sign(refresh_token_payload, "secret")
-  console.log(req.body.email, req.body.password)
   let user = await db.collection("users").findOne({ email: req.body.email, password: req.body.password })
   if (user) {
     res.send({ access_token, refresh_token, user: user })
@@ -45,6 +44,7 @@ router.post("/refresh-token", async function (req, res) {
   try {
     //verify refresh token first, if no error, continue
     const decoded = jwt.verify(refresh_token, "secret")
+    console.log(decoded)
     let access_token = jwt.sign(access_token_payload, "secret")
     res.send({ access_token, refresh_token, user: { name: "feeco", age: 30 } })
     // throw new Error("hello world")

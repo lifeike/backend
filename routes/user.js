@@ -13,8 +13,12 @@ router.get("/getUser", verify, async function (req, res) {
 //search user
 router.get("/search", async function (req, res) {
   console.log(req.originalUrl)
-  console.log(req.query)
-  res.send("ok")
+  console.log(req.query.keyword)
+  let result = await db
+    .collection("users")
+    .find({ first_name: { $regex: req.query.keyword, $options: "i" } })
+    .toArray()
+  res.send(result)
 })
 
 router.post("/addUser", function (req, res) {
