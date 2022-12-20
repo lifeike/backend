@@ -13,6 +13,7 @@ router.post("/signIn", async function (req, res) {
     iat: Math.floor(Date.now() / 1000),
     aud: "www.test.com",
     type: "access-token",
+    emai: req.body.email,
   }
   let refresh_token_payload = {
     iss: "feeco",
@@ -20,6 +21,7 @@ router.post("/signIn", async function (req, res) {
     iat: Math.floor(Date.now() / 1000),
     aud: "www.test.com",
     type: "refresh-token",
+    email: req.body.email,
   }
   let access_token = jwt.sign(access_token_payload, "secret")
   let refresh_token = jwt.sign(refresh_token_payload, "secret")
@@ -44,8 +46,12 @@ router.post("/refresh-token", async function (req, res) {
   try {
     //verify refresh token first, if no error, continue
     const decoded = jwt.verify(refresh_token, "secret")
+    console.log("test")
+    console.log(decoded)
+    console.log("test")
+    let user = await db.collection("users").findOne({ email: decoded.email })
     let access_token = jwt.sign(access_token_payload, "secret")
-    res.send({ access_token, refresh_token, user: { name: "feeco", age: 30 } })
+    res.send({ access_token, refresh_token, user })
     // throw new Error("hello world")
   } catch (error) {
     res.status(401).send("invalid refresh token.")
