@@ -11,13 +11,8 @@ router.get("/", async function (req, res) {
 
 router.post("/createChat", async function (req, res) {
   //use user id to create chat
-  // {
-  //   isGroupChat:false,
-  //   users:[],
-  //   _id:"",
-  //   chatName:""
-  //   }
   console.log(req.body)
+  res.send("ok")
 })
 
 module.exports = router
