@@ -23,7 +23,13 @@ router.post("/createChat", async function (req, res) {
   }
 })
 
-router.get("/getChatById/:id", async function (req, res) {
+router.post("/createMessage", async function (req, res) {
+  console.log(req.body)
+  // let result = await db.collection("messages").insertOne(req.body)
+  // res.send(result)
+})
+
+router.get("/getMessagesByChatId/:id", async function (req, res) {
   //
 })
 
