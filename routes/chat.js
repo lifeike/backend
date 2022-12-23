@@ -25,12 +25,14 @@ router.post("/createChat", async function (req, res) {
 
 router.post("/createMessage", async function (req, res) {
   console.log(req.body)
-  // let result = await db.collection("messages").insertOne(req.body)
-  // res.send(result)
+  let result = await db.collection("messages").insertOne(req.body)
+  res.send(result)
 })
 
 router.get("/getMessagesByChatId/:id", async function (req, res) {
-  //
+  console.log(req.params.id)
+  let result = await db.collection("messages").find({ chat: req.params.id }).toArray()
+  res.send(result)
 })
 
 module.exports = router
