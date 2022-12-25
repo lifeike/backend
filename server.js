@@ -24,3 +24,5 @@ app.get("/cancel", async function (req, res) {
   }, 2000)
 })
 const server = app.listen(8080, () => console.log("server running on port 8080"))
+
+module.exports = server
