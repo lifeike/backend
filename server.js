@@ -2,6 +2,7 @@ const { db, collection } = require("./db")
 const express = require("express")
 const cors = require("cors")
 var bodyParser = require("body-parser")
+const { WebSocketServer } = require("ws")
 
 const app = express()
 //app.use(cors())
@@ -23,6 +24,5 @@ app.get("/cancel", async function (req, res) {
     res.send(findResult)
   }, 2000)
 })
-const server = app.listen(8080, () => console.log("server running on port 8080"))
 
-module.exports = server
+app.listen(8080, () => console.log("server running on port 8080"))
