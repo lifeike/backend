@@ -4,6 +4,7 @@ const cors = require("cors")
 var bodyParser = require("body-parser")
 const { createServer } = require("http")
 const { WebSocketServer } = require("ws")
+const websocket = require("./websocket") //my web socket functions
 
 const app = express()
 //app.use(cors())
@@ -21,17 +22,7 @@ app.use("/chat", require("./routes/chat"))
 
 const server = createServer(app)
 const wss = new WebSocketServer({ server })
-wss.on("connection", function (ws) {
-  console.log("started client websocket")
-
-  ws.on("message", function message(data) {
-    console.log("received: %s", data)
-    ws.send("send all clients")
-  })
-
-  ws.on("close", function () {
-    console.log("stopping client websocket")
-  })
-})
+//run web socket configs
+websocket(wss)
 
 server.listen(8080, () => console.log("server running on port 8080"))
