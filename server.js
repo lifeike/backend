@@ -19,15 +19,19 @@ app.use("/movie", require("./routes/movie"))
 app.use("/upload", require("./routes/upload"))
 app.use("/chat", require("./routes/chat"))
 
-const wsServer = new ws.Server({ noServer: true })
-wsServer.on("connection", (socket) => {
-  socket.on("message", (message) => console.log(message))
-})
+const server = createServer(app)
+const wss = new WebSocketServer({ server })
+wss.on("connection", function (ws) {
+  console.log("started client websocket")
 
-const server = app.listen(8080, () => console.log("server running on port 8080"))
+  ws.on("message", function message(data) {
+    console.log("received: %s", data)
+    ws.send("send all clients")
+  })
 
-server.on("upgrade", (request, socket, head) => {
-  wsServer.handleUpgrade(request, socket, head, (socket) => {
-    wsServer.emit("connection", socket, request)
+  ws.on("close", function () {
+    console.log("stopping client websocket")
   })
 })
+
+server.listen(8080, () => console.log("server running on port 8080"))
