@@ -2,6 +2,7 @@ const { db, collection } = require("./db")
 const express = require("express")
 const cors = require("cors")
 var bodyParser = require("body-parser")
+const { createServer } = require("http")
 const { WebSocketServer } = require("ws")
 
 const app = express()
@@ -18,11 +19,15 @@ app.use("/movie", require("./routes/movie"))
 app.use("/upload", require("./routes/upload"))
 app.use("/chat", require("./routes/chat"))
 
-app.get("/cancel", async function (req, res) {
-  setTimeout(() => {
-    const findResult = db.collection("documents").find({}).toArray()
-    res.send(findResult)
-  }, 2000)
+const wsServer = new ws.Server({ noServer: true })
+wsServer.on("connection", (socket) => {
+  socket.on("message", (message) => console.log(message))
 })
 
-app.listen(8080, () => console.log("server running on port 8080"))
+const server = app.listen(8080, () => console.log("server running on port 8080"))
+
+server.on("upgrade", (request, socket, head) => {
+  wsServer.handleUpgrade(request, socket, head, (socket) => {
+    wsServer.emit("connection", socket, request)
+  })
+})
