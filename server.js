@@ -24,22 +24,3 @@ app.get("/cancel", async function (req, res) {
   }, 2000)
 })
 const server = app.listen(8080, () => console.log("server running on port 8080"))
-const io = require("socket.io")(server, {
-  pingTimeout: 60000,
-  cors: {
-    origin: "http://localhost:3000",
-  },
-})
-
-io.on("connection", (socket) => {
-  console.log("connected to socket.io.")
-  socket.on("setup", (userData) => {
-    // console.log(userData._id)
-    socket.join(userData._id)
-    socket.emit("connected")
-  })
-  socket.on("join chat", (room) => {
-    socket.join(room)
-    console.log("user joined room id: ", room)
-  })
-})
