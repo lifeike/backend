@@ -6,8 +6,20 @@ const websocket = async (wss) => {
   wss.on("connection", (socket) => {
     const uuid = uuidv4() // create here a uuid for this connection
 
+    const leave = (room) => {
+      // not present: do nothing
+      if (!rooms[room][uuid]) return
+
+      // if the one exiting is the last one, destroy the room
+      if (Object.keys(rooms[room]).length === 1) delete rooms[room]
+      // otherwise simply leave the room
+      else delete rooms[room][uuid]
+    }
+
     socket.on("message", (data) => {
       const { meta, room, message } = JSON.parse(data)
+      console.log(meta, room, message)
+
       if (meta === "join") {
         if (!rooms[room]) rooms[room] = {} // create the room
         if (!rooms[room][uuid]) rooms[room][uuid] = socket // join the room
@@ -15,7 +27,12 @@ const websocket = async (wss) => {
         leave(room)
       } else if (!meta) {
         // send the message to all in the room
-        Object.entries(rooms[room]).forEach(([, sock]) => sock.send({ message }))
+        // Object.entries(rooms[room]).forEach(([, sock]) => sock.send({ message }))
+        for (let sock in rooms[room]) {
+          sock.send({
+            message,
+          })
+        }
       }
     })
 
@@ -24,16 +41,6 @@ const websocket = async (wss) => {
       Object.keys(rooms).forEach((room) => leave(room))
     })
   })
-}
-
-const leave = (room) => {
-  // not present: do nothing
-  if (!rooms[room][uuid]) return
-
-  // if the one exiting is the last one, destroy the room
-  if (Object.keys(rooms[room]).length === 1) delete rooms[room]
-  // otherwise simply leave the room
-  else delete rooms[room][uuid]
 }
 
 module.exports = websocket
