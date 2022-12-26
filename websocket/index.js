@@ -4,8 +4,7 @@ let clients = {}
 const websocket = async (webSocketServer) => {
   webSocketServer.on("connection", function (websocket, request) {
     console.log("started client websocket")
-    websocket.id = id++
-    clients[websocket.id] = websocket
+    let connectionId = request.headers["sec-websocket-key"]
 
     websocket.on("message", function (data) {
       console.log("received: %s", data)
