@@ -1,12 +1,16 @@
-const websocket = async (wss) => {
-  wss.on("connection", function (ws) {
-    console.log("started client websocket")
+let connectionList = []
 
-    ws.on("message", function (data) {
+const websocket = async (webSocketServer) => {
+  webSocketServer.on("connection", function (websocket, request) {
+    console.log("started client websocket")
+    connectionList.push(ws)
+
+    websocket.on("message", function (data) {
       console.log("received: %s", data)
+      connectionList.forEach((item) => item.send("broadcast to all users"))
     })
 
-    ws.on("close", function () {
+    websocket.on("close", function () {
       console.log("stopping client websocket")
     })
   })
