@@ -1,13 +1,14 @@
-let connectionList = []
+let id = 0
+let clients = {}
 
 const websocket = async (webSocketServer) => {
   webSocketServer.on("connection", function (websocket, request) {
     console.log("started client websocket")
-    connectionList.push(ws)
+    websocket.id = id++
+    clients[websocket.id] = websocket
 
     websocket.on("message", function (data) {
       console.log("received: %s", data)
-      connectionList.forEach((item) => item.send("broadcast to all users"))
     })
 
     websocket.on("close", function () {
