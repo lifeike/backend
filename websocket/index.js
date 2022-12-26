@@ -7,7 +7,7 @@ const websocket = async (webSocketServer) => {
     let connectionId = request.headers["sec-websocket-key"]
 
     websocket.on("message", function (data) {
-      console.log("received: %s", data)
+      console.log(data)
     })
 
     websocket.on("close", function () {
