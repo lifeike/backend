@@ -7,7 +7,7 @@ const websocket = async (wss) => {
     const uuid = uuidv4() // create here a uuid for this connection
 
     socket.on("message", (data) => {
-      const { message, meta, room } = data
+      const { meta, room, message } = JSON.parse(data)
       if (meta === "join") {
         if (!rooms[room]) rooms[room] = {} // create the room
         if (!rooms[room][uuid]) rooms[room][uuid] = socket // join the room
