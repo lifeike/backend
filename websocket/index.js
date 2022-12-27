@@ -8,7 +8,7 @@ const websocket = async (wss) => {
 
     const leave = (room) => {
       // not present: do nothing
-      if (!rooms[room]?.uuid) return
+      if (rooms[room] == undefined) return
       // if the one exiting is the last one, destroy the room
       if (Object.keys(rooms[room]).length === 1) delete rooms[room]
       // otherwise simply leave the room
