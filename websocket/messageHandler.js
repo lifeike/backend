@@ -1,6 +1,7 @@
 const { v4: uuidv4 } = require("uuid")
 
 const rooms = {}
+
 const messageHandler = async (meta, room, message, socket) => {
   const uuid = uuidv4() // create here a uuid for this connection
   if (meta === "join") {

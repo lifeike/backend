@@ -6,7 +6,7 @@ const { createServer } = require("http")
 const applyRealTimeChatWebsocket = require("./websocket") //my web socket functions
 
 const app = express()
-//app.use(cors())
+app.use(cors({ origin: "https://main.d2opyrywnuqr8v.amplifyapp.com/" }))
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
