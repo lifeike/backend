@@ -18,20 +18,16 @@ const websocket = async (wss) => {
 
     socket.on("message", (data) => {
       const { meta, room, message } = JSON.parse(data)
-      console.log(meta, room, message)
 
       if (meta === "join") {
         if (!rooms[room]) rooms[room] = {} // create the room
         if (!rooms[room][uuid]) rooms[room][uuid] = socket // join the room
       } else if (meta === "leave") {
         leave(room)
-      } else if (!meta) {
+      } else if (meta === "") {
         // send the message to all in the room
-        // Object.entries(rooms[room]).forEach(([, sock]) => sock.send({ message }))
-        for (let sock in rooms[room]) {
-          sock.send({
-            message,
-          })
+        for (const [key, sock] of Object.entries(rooms[room])) {
+          sock.send(JSON.stringify({ meta, room, message }))
         }
       }
     })
