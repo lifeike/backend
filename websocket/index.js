@@ -14,7 +14,7 @@ const websocket = async (wss) => {
       else delete rooms[room][uuid]
     }
 
-    socket.on("message", (data) => {
+    socket.on("message", async (data) => {
       const { meta, room, message } = JSON.parse(data)
       console.log(meta, room, message)
 
