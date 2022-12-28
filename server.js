@@ -1,9 +1,9 @@
-const { db, collection } = require("./db")
 const express = require("express")
 const cors = require("cors")
 var bodyParser = require("body-parser")
 const { createServer } = require("http")
-const applyRealTimeChatWebsocket = require("./websocket") //my web socket functions
+require("./websocket/realTimeChat")() //my web socket functions
+require("./websocket/goGame")() //my web socket functions
 
 const app = express()
 app.use(cors({ origin: "https://main.d2opyrywnuqr8v.amplifyapp.com/" }))
@@ -19,7 +19,4 @@ app.use("/movie", require("./routes/movie"))
 app.use("/upload", require("./routes/upload"))
 app.use("/chat", require("./routes/chat"))
 
-const server = createServer(app)
-applyRealTimeChatWebsocket(server)
-
-server.listen(8080, () => console.log("server running on port 8080"))
+app.listen(8080, () => console.log("server running on port 8080"))
