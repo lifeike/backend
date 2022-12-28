@@ -6,7 +6,7 @@ const rooms = {}
 const wss = new WebSocketServer({ port: 8081 })
 const uuid = uuidv4() // create here a uuid for this connection
 
-wss.on("connection", (socket) => {
+wss.on("connection", (socket, request) => {
   socket.on("message", async (data) => {
     console.log("real time chat websocket server running on port 8081.")
     const { meta, room, message } = JSON.parse(data)
