@@ -8,6 +8,7 @@ const uuid = uuidv4() // create here a uuid for this connection
 
 wss.on("connection", (socket) => {
   socket.on("message", async (data) => {
+    console.log("go game chat websocket server running on port 8082.")
     socket.send(JSON.stringify("ok ok"))
   })
 
