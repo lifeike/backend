@@ -2,7 +2,6 @@ const { WebSocketServer } = require("ws")
 const { v4: uuidv4 } = require("uuid")
 const rooms = {}
 
-const realTimeChatWebsocket = async (expressSever) => {
   // const wss = new WebSocketServer({ server: expressSever })
   const wss = new WebSocketServer({ port: 8081 })
   const uuid = uuidv4() // create here a uuid for this connection
@@ -34,6 +33,4 @@ const realTimeChatWebsocket = async (expressSever) => {
       // Object.keys(rooms).forEach((room) => leave(room))
     })
   })
-}
 
-module.exports = realTimeChatWebsocket
