@@ -4,8 +4,8 @@ const { v4: uuidv4 } = require("uuid")
 const sesClient = new SESClient({
   region: "ca-central-1",
   credentials: {
-    accessKeyId: "AKIARBXBS6257FNBLNTG",
-    secretAccessKey: "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",
+    accessKeyId: process.env.key,
+    secretAccessKey: process.env.secret,
   },
 })
 const createSendEmailCommand = (toAddress, fromAddress) => {
