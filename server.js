@@ -2,6 +2,7 @@ const express = require("express")
 const cors = require("cors")
 var bodyParser = require("body-parser")
 
+console.log(process.env)
 const app = express()
 app.use(cors({ origin: "https://main.d2opyrywnuqr8v.amplifyapp.com/" })) //enable production url
 // parse application/x-www-form-urlencoded
