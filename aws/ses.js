@@ -39,5 +39,5 @@ const createSendEmailCommand = (toAddress, fromAddress) => {
   })
 }
 
-//send verification to new register user
-const sendEmailCommand = createSendEmailCommand(req.body.email, "lifeike67@gmail.com")
+exports = sesClient
+exports = createSendEmailCommand

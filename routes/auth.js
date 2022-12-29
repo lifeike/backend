@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken")
 const router = require("express").Router()
 const db = require("../db")
+const { sesClient, createSendEmailCommand } = require("../aws/ses")
 
 router.post("/signIn", async function (req, res) {
   let access_token_payload = {
@@ -69,8 +70,10 @@ router.post("/sign-up", async function (req, res) {
     res.send("Please check your email for verification code.")
   }
 
+  //send verification to new register user
+  const sendEmailCommand = createSendEmailCommand(req.body.email, "lifeike67@gmail.com")
   try {
-    return await sesClient.send(sendEmailCommand)
+    await sesClient.send(sendEmailCommand)
   } catch (e) {
     console.error("Failed to send email.")
     console.log(e)
