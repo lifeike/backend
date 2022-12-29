@@ -1,9 +1,11 @@
 const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses")
+const { v4: uuidv4 } = require("uuid")
+
 const sesClient = new SESClient({
   region: "ca-central-1",
   credentials: {
-    accessKeyId: "AKIARBXBS6257TGZ5IXS",
-    secretAccessKey: "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",
+    accessKeyId: "AKIARBXBS6257FNBLNTG",
+    secretAccessKey: "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",
   },
 })
 const createSendEmailCommand = (toAddress, fromAddress) => {
@@ -39,5 +41,4 @@ const createSendEmailCommand = (toAddress, fromAddress) => {
   })
 }
 
-exports = sesClient
-exports = createSendEmailCommand
+module.exports = { sesClient, createSendEmailCommand }
