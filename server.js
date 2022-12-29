@@ -1,8 +1,11 @@
 const express = require("express")
 const cors = require("cors")
 var bodyParser = require("body-parser")
+//add .env to process.env
+const dotenv = require("dotenv")
+dotenv.config()
+console.log(process.env.PASSWORD)
 
-console.log(process.env)
 const app = express()
 app.use(cors({ origin: "https://main.d2opyrywnuqr8v.amplifyapp.com/" })) //enable production url
 // parse application/x-www-form-urlencoded
