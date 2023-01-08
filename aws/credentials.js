@@ -5,3 +5,4 @@ const axios = require("axios")
   console.log(result.data)
   module.exports = result.data
 })()
+
