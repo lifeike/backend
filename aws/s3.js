@@ -1,4 +1,6 @@
 const { S3Client } = require("@aws-sdk/client-s3")
+require("./credentials")
+
 let s3 = new S3Client({
   region: "ca-central-1",
   credentials: {
@@ -10,6 +12,4 @@ let s3 = new S3Client({
   signatureVersion: "v4",
 })
 
-let cred = require("./credentials")()
-console.log(cred)
 module.exports = s3
