@@ -3,6 +3,7 @@ const credentials = require("./credentials")
 console.log(credentials)
 
 credentials.then((res) => {
+  console.log(res.data)
   let s3 = new S3Client({
     region: "ca-central-1",
     credentials: {
@@ -14,5 +15,6 @@ credentials.then((res) => {
     signatureVersion: "v4",
   })
 
+  console.log("exports")
   module.exports = s3
 })
