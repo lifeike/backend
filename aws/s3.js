@@ -19,4 +19,5 @@ let s3 = new S3Client({
   signatureVersion: "v4",
 })
 
+console.log("3")
 module.exports = s3
