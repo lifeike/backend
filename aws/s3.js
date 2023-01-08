@@ -4,6 +4,7 @@ const credentialsPromise = require("./credentials")
 let s3
 
 credentialsPromise.then((credentials) => {
+  console.log("2")
   s3 = new S3Client({
     region: "ca-central-1",
     credentials: {
@@ -16,4 +17,5 @@ credentialsPromise.then((credentials) => {
   })
 })
 
+console.log("1")
 module.exports = s3
