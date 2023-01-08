@@ -4,6 +4,4 @@ const credentials = async () => {
   return result
 }
 
-let result = credentials()
-
-module.exports = result
+module.exports = credentials
