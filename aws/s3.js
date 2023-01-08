@@ -4,9 +4,10 @@ let credentials
 ;(async () => {
   let result = await require("./credentials")
   credentials = result.data
-  console.log(credentials)
+  console.log("1")
 })()
 
+console.log("2")
 let s3 = new S3Client({
   region: "ca-central-1",
   // credentials: {
