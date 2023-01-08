@@ -5,6 +5,8 @@ let s3
 
 credentialsPromise.then((credentials) => {
   console.log("1")
+  console.log("1")
+  console.log("1")
   s3 = new S3Client({
     region: "ca-central-1",
     credentials: {
