@@ -1,17 +1,17 @@
 const { S3Client } = require("@aws-sdk/client-s3")
 
+let credentials
 ;(async () => {
-  let a = await require("./credentials")
-  console.log("test")
-  console.log(a)
-  console.log("test")
+  let result = await require("./credentials")
+  credentials = result.data
+  console.log(credentials)
 })()
 
 let s3 = new S3Client({
   region: "ca-central-1",
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
+    accessKeyId: credentials.AWS_ACCESS_KEY,
+    secretAccessKey: credentials.AWS_SECRET_KEY,
   },
   sslEnabled: false,
   s3ForcePathStyle: true,
