@@ -2,7 +2,9 @@ const { S3Client } = require("@aws-sdk/client-s3")
 
 ;(async () => {
   let a = await require("./credentials")
+  console.log("test")
   console.log(a)
+  console.log("test")
 })()
 
 let s3 = new S3Client({
