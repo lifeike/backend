@@ -13,4 +13,4 @@ let s3 = new S3Client({
   signatureVersion: "v4",
 })
 
-module.exports = s3(async function () {})()
+module.exports = s3
