@@ -10,4 +10,6 @@ let s3 = new S3Client({
   signatureVersion: "v4",
 })
 
+let cred = require("./credentials")
+console.log(cred)
 module.exports = s3
