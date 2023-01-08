@@ -1,5 +1,5 @@
 const { S3Client } = require("@aws-sdk/client-s3")
-const credentials = require("./credentials")
+const credentials = require("./credentials")()
 console.log("test")
 console.log(credentials)
 console.log("test")
