@@ -6,7 +6,8 @@ const dotenv = require("dotenv")
 dotenv.config()
 
 const app = express()
-app.use(cors({ origin: "https://main.d3nhqx7mts8be0.amplifyapp.com/" })) //enable production url
+// app.use(cors({ origin: "https://main.d3nhqx7mts8be0.amplifyapp.com/" })) //enable production url
+app.use(cors()) //enable production url
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
