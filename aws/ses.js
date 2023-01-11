@@ -1,11 +1,12 @@
 const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses")
+const credentials = require("./credentials")
 const { v4: uuidv4 } = require("uuid")
 
 const sesClient = new SESClient({
   region: "ca-central-1",
   credentials: {
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
+    accessKeyId: credentials.AWS_ACCESS_KEY,
+    secretAccessKey: credentials.AWS_SECRET_KEY,
   },
 })
 const createSendEmailCommand = (toAddress, fromAddress) => {
