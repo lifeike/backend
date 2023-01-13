@@ -20,6 +20,6 @@ app.use("/movie", require("./routes/movie"))
 app.use("/upload", require("./routes/upload"))
 app.use("/chat", require("./routes/chat"))
 
-require("./websocket/realTimeChat") //start real time websocket server 8081
-require("./websocket/goGame") //start go game websocket server 8082
+//require("./websocket/realTimeChat") //start real time websocket server 8081
+//require("./websocket/goGame") //start go game websocket server 8082
 app.listen(8080, () => console.log("http server running on port 8080")) //http server 8080
