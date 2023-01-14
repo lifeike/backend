@@ -13,12 +13,12 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use("/", require("./routes/index"))
-app.use("/auth", require("./routes/auth"))
-app.use("/user", require("./routes/user"))
-app.use("/movie", require("./routes/movie"))
-app.use("/upload", require("./routes/upload"))
-app.use("/chat", require("./routes/chat"))
+app.use("/", require("./api/index"))
+app.use("/auth", require("./api/auth"))
+app.use("/user", require("./api/user"))
+app.use("/movie", require("./api/movie"))
+app.use("/upload", require("./api/upload"))
+app.use("/chat", require("./api/chat"))
 
 //require("./websocket/realTimeChat") //start real time websocket server 8081
 //require("./websocket/goGame") //start go game websocket server 8082
