@@ -1,12 +1,11 @@
-// const request = require("sync-request")
-// let result
+const fs = require("fs")
+const homedir = require("os").homedir()
+// console.log(homedir)
 
-// try {
-//   result = request("GET", "http://169.254.169.254/latest/meta-data/iam/security-credentials/ec2-instance-full-access-s3-feeco-created-role")
-// } catch (e) {}
+const credentials = fs.readFileSync(`${homedir}/.aws-credentials`, "utf8").toString().split("\n")
+console.log(credentials)
 
-// module.exports = result.getBody("utf-8")
 module.exports = {
-  AWS_ACCESS_KEY: "FJDKLSAJFKADJ",
-  AWS_SECRET_KEY: "FJADSIJFLKJ",
+  AWS_ACCESS_KEY: process.env.aws_access_key,
+  AWS_SECRET_KEY: process.env.aws_secret_access_key,
 }
