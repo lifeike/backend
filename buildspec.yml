@@ -6,14 +6,11 @@ phases:
   build:
     commands:
       - npm run build
-  post_build:
+post_build:
     commands:
-      - echo Build completed on `date`
+    - echo "Updating lambda Function..."
+    - aws lambda update-function-code --function-name backend --zip-file fileb://deployment_package.zip
+    - echo "DONE!!"
 artifacts:
   files:
     - '**/*'
-      post_build:
-    commands:
-      - echo "Updating lambda Function..."
-      - aws lambda update-function-code --function-name backend --zip-file fileb://deployment_package.zip
-      - echo "DONE!!"
