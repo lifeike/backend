@@ -3,5 +3,6 @@ const url = "mongodb+srv://feeco:Test%401234@cluster0.de2gw.mongodb.net/?retryWr
 const client = new MongoClient(url)
 client.connect()
 console.log("database running.")
+
 const db = client.db("template")
 module.exports = db
