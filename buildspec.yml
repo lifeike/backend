@@ -1,16 +1,36 @@
 version: 0.2
 phases:
-  pre_build:
+  install:
+    runtime-versions:
+      nodejs: 16
     commands:
       - npm install
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies...
   build:
     commands:
-      - npm run start
-post_build:
+      - echo Build started on `date`
+      - npm run build
+      - npm prune --production
+    post_build:
     commands:
     - echo "Updating lambda Function..."
     - aws lambda update-function-code --function-name backend --zip-file fileb://deployment_package.zip
     - echo "DONE!!"
 artifacts:
+  type: zip
   files:
-    - '**/*'
+    - package.json
+    - package-lock.json
+    - "build/**/*"
+    - .ebextensions/**/*
+
+
+
+
+
+
+
+
+
