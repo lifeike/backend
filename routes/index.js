@@ -3,10 +3,6 @@ const router = express.Router()
 const path = require("path")
 const db = require("../db")
 
-router.get("/", async function (req, res) {
-  const findResult = await db.collection("movies").find({}).toArray()
-  // console.log("Found documents =>", findResult)
-  res.send(findResult)
-})
+router.use(require("./movie"))
 
 module.exports = router
