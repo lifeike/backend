@@ -1,8 +1,8 @@
 const express = require("express")
 const router = express.Router()
 const path = require("path")
-const verify = require("../middlewares/authVerify")
-const db = require("../db")
+const verify = require("../../middlewares/authVerify")
+const db = require("../../db")
 const { ObjectID, ObjectId } = require("bson")
 
 router.get("/getMovies", verify, async function (req, res) {

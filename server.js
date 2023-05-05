@@ -13,10 +13,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use("/", require("./routes/index"))
-app.use("/auth", require("./routes/auth"))
-app.use("/user", require("./routes/user"))
-app.use("/movie", require("./routes/movie"))
-app.use("/upload", require("./routes/upload"))
-app.use("/chat", require("./routes/chat"))
+app.use("/api/v1", require("./routes/v1/index"))
+app.use("/api/v2", require("./routes/v2/index"))
 app.listen(8080, () => console.log("http server running on port 8080")) //http server 8080
