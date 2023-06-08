@@ -13,5 +13,5 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
-app.use("/api/v1", require("./routes/index"))
+app.use("/api/v1", require("@/routes/index"))
 app.listen(8080, () => console.log("http server running on port 8080")) //http server 8080
