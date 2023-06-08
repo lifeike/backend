@@ -30,5 +30,8 @@
   },
   "devDependencies": {
     "@vercel/ncc": "^0.36.1"
+  },
+  "imports": {
+    "@": "./src"
   }
 }
