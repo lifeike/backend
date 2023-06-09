@@ -8,16 +8,10 @@ const { ObjectID, ObjectId } = require("bson")
 
 /**
  * @openapi
- * /api/v1/workouts:
+ * /api/v1/moives/:id:
  *   get:
  *     tags:
- *       - Workouts
- *     parameters:
- *       - in: query
- *         name: mode
- *         schema:
- *           type: string
- *         description: The mode of a workout
+ *       - Movies
  *     responses:
  *       200:
  *         description: OK
@@ -32,23 +26,7 @@ const { ObjectID, ObjectId } = require("bson")
  *                 data:
  *                   type: array
  *                   items:
- *                     $ref: "#/components/schemas/Workout"
- *       5XX:
- *         description: FAILED
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: FAILED
- *                 data:
- *                   type: object
- *                   properties:
- *                     error:
- *                       type: string
- *                       example: "Some error message"
+ *                     type: object
  */
 router.get("/", movieController.getAllMovies)
 /**
