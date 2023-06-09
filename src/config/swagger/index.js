@@ -20,7 +20,7 @@ const options = {
         email: "lifeike67@gmail.com",
       },
     },
-    servers: [{ url: "staging" }],
+    servers: [{ url: "staging" }, { url: "prod" }],
   },
   apis: ["./src/routes/movie.js"],
 }
