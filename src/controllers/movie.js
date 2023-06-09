@@ -1,3 +1,5 @@
+const db = require("@/config/db/mongoDB")
+
 // In src/controllers/workoutController.js
 const getAllMovies = async (req, res) => {
   //pagination receive two params: items_per_page
@@ -17,20 +19,23 @@ const getAllMovies = async (req, res) => {
   }
 }
 
-const getOneMovie = (req, res) => {
-  res.send("Get an existing workout")
+const getOneMovie = async (req, res) => {
+  const movie = await db.collection("movies").findOne({ _id: ObjectId(req.body.id) })
+  res.send(movie)
 }
 
-const createMovie = (req, res) => {
-  res.send("Create a new workout")
+const createMovie = async (req, res) => {
+  res.send("Create a new movie")
 }
 
-const updateMovie = (req, res) => {
-  res.send("Update an existing workout")
+const updateMovie = async (req, res) => {
+  const movie = await db.collection("movies").findOneAndUpdate({ _id: ObjectId(req.params.id) }, { $set: { ...req.body } })
+  res.send(movie)
 }
 
-const deleteMovie = (req, res) => {
-  res.send("Delete an existing workout")
+const deleteMovie = async (req, res) => {
+  const movie = await db.collection("movies").findOneAndDelete({ _id: ObjectId(req.params.id) })
+  res.send({ message: "You have successfully deleted this item." })
 }
 
 module.exports = {
