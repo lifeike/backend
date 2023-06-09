@@ -11,11 +11,11 @@ const getAllMovies = async (req, res) => {
       .skip(req.query.items_per_page * req.query.page_number)
       .limit(+req.query.items_per_page)
       .toArray()
-    res.send({ totalPages: total / req.query.items_per_page, movieList })
+    return { totalPages: total / req.query.items_per_page, movieList }
   } else {
     //or  if items_per_page is empty, return all items
     const movieList = await db.collection("movies").find({}).toArray()
-    res.send({ totalPages: null, movieList })
+    return { totalPages: null, movieList }
   }
 }
 

@@ -4,7 +4,7 @@ const movieServices = require("@/services/movie")
 // In src/controllers/workoutController.js
 const getAllMovies = async (req, res) => {
   //pagination receive two params: items_per_page
-  const allMovies = movieServices.getAllMovies()
+  const allMovies = await movieServices.getAllMovies(req, res)
   res.send(allMovies)
 }
 
