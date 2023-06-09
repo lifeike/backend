@@ -15,16 +15,12 @@ const options = {
         url: "https://spdx.org/licenses/MIT.html",
       },
       contact: {
-        name: "LogRocket",
-        url: "https://logrocket.com",
-        email: "info@email.com",
+        name: "Feeco",
+        url: "https://main.d3nhqx7mts8be0.amplifyapp.com/",
+        email: "lifeike67@gmail.com",
       },
     },
-    servers: [
-      {
-        url: "http://localhost:3000",
-      },
-    ],
+    servers: [{ url: "staging" }],
   },
   apis: ["@/routes/movie"],
 }
