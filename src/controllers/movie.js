@@ -5,7 +5,7 @@ const movieServices = require("@/services/movie")
 const getAllMovies = async (req, res) => {
   //pagination receive two params: items_per_page
   const allMovies = await movieServices.getAllMovies(req, res)
-  res.send(allMovies)
+  res.send({ status: "OK", data: allMovies })
 }
 
 const getOneMovie = async (req, res) => {

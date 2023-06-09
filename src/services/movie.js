@@ -5,17 +5,17 @@ const getAllMovies = async (req, res) => {
   //pagination receive two params: items_per_page
   const total = await db.collection("movies").count()
   if (req.query.items_per_page && req.query.page_number) {
-    const movieList = await db
+    const movies = await db
       .collection("movies")
       .find({})
       .skip(req.query.items_per_page * req.query.page_number)
       .limit(+req.query.items_per_page)
       .toArray()
-    return { totalPages: total / req.query.items_per_page, movieList }
+    return { totalPages: total / req.query.items_per_page, movies }
   } else {
     //or  if items_per_page is empty, return all items
-    const movieList = await db.collection("movies").find({}).toArray()
-    return { totalPages: null, movieList }
+    const movies = await db.collection("movies").find({}).toArray()
+    return { totalPages: null, movies }
   }
 }
 
