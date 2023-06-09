@@ -8,16 +8,13 @@ const { ObjectID, ObjectId } = require("bson")
 
 //get all movies
 router.get("/", movieController.getAllMovies)
-
 //get one movie
 router.get("/:id", verify, movieController.getOneMovie)
-
 //careate one movie
 router.post("/", verify, movieController.createMovie)
-
 //upodate one movie
 router.put("/:id", verify, movieController.updateMovie)
-
+//delete one movie
 router.delete("/:id", verify, movieController.deleteMovie)
 
 module.exports = router
