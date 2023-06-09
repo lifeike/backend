@@ -7,7 +7,6 @@ const { ObjectID, ObjectId } = require("bson")
 
 //get all movies
 router.get("/", async function (req, res) {
-  console.log("test")
   //pagination receive two params: items_per_page
   const total = await db.collection("movies").count()
   if (req.query.items_per_page && req.query.page_number) {
