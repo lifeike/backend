@@ -9,7 +9,7 @@ const { ObjectID, ObjectId } = require("bson")
 //get all movies
 /**
  * @openapi
- * /api/v1/workouts:
+ * /api/v1/moives:
  *   get:
  *     tags:
  *       - Workouts
