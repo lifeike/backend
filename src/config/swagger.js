@@ -6,7 +6,7 @@ const swaggerUi = require("swagger-ui-express")
 const options = {
   definition: {
     openapi: "3.0.0",
-    info: { title: "Crossfit WOD API", version: "1.0.0" },
+    info: { title: "Feeco Backend API", version: "1.0.0" },
   },
   apis: ["./src/routes/movie.js"],
 }
