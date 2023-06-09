@@ -6,13 +6,18 @@ const verify = require("@/middlewares/authVerify")
 const db = require("@/config/db/mongoDB")
 const { ObjectID, ObjectId } = require("bson")
 
-//get all movies
 /**
  * @openapi
- * /api/v1/moives:
+ * /api/v1/workouts:
  *   get:
  *     tags:
- *       - Movies
+ *       - Workouts
+ *     parameters:
+ *       - in: query
+ *         name: mode
+ *         schema:
+ *           type: string
+ *         description: The mode of a workout
  *     responses:
  *       200:
  *         description: OK
@@ -27,7 +32,23 @@ const { ObjectID, ObjectId } = require("bson")
  *                 data:
  *                   type: array
  *                   items:
- *                     type: object
+ *                     $ref: "#/components/schemas/Workout"
+ *       5XX:
+ *         description: FAILED
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: FAILED
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     error:
+ *                       type: string
+ *                       example: "Some error message"
  */
 router.get("/", movieController.getAllMovies)
 /**
