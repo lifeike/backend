@@ -8,7 +8,7 @@ const { ObjectID, ObjectId } = require("bson")
 
 /**
  * @openapi
- * /api/v1/moives/:id:
+ * /api/v1/moives:
  *   get:
  *     tags:
  *       - Movies
