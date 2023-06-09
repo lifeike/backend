@@ -1,5 +1,6 @@
 require("module-alias/register") //@ path alias
 const express = require("express")
+const { swaggerDocs } = require("@/config/swagger")
 const cors = require("cors")
 var bodyParser = require("body-parser")
 //add .env to process.env
