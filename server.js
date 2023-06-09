@@ -14,6 +14,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+//run swagger server
 swaggerDocs(app)
 
 app.use("/api/v1", require("@/routes/index"))
