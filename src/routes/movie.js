@@ -12,7 +12,7 @@ const { ObjectID, ObjectId } = require("bson")
  * /api/v1/moives:
  *   get:
  *     tags:
- *       - Workouts
+ *       - Movies
  *     responses:
  *       200:
  *         description: OK
