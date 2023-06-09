@@ -4,8 +4,13 @@ const movieServices = require("@/services/movie")
 // In src/controllers/workoutController.js
 const getAllMovies = async (req, res) => {
   //pagination receive two params: items_per_page
-  const allMovies = await movieServices.getAllMovies(req, res)
-  res.send({ status: "OK", data: allMovies })
+  const { pagination } = req.query
+  try {
+    const allMovies = await movieServices.getAllMovies({ pagination })
+    res.send({ status: "ok", data: allMovies })
+  } catch (error) {
+    res.status(error?.status || 500).send({ status: "FAILED", data: { error: error?.message || error } })
+  }
 }
 
 const getOneMovie = async (req, res) => {
