@@ -1,4 +1,4 @@
-require("module-alias/register")
+require("module-alias/register") //@ path alias
 const express = require("express")
 const cors = require("cors")
 var bodyParser = require("body-parser")
