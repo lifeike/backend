@@ -22,7 +22,7 @@ const options = {
     },
     servers: [{ url: "staging" }],
   },
-  apis: ["@/routes/movie"],
+  apis: ["@/v1/routes/movie.js"],
 }
 
 // Docs in JSON format
