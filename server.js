@@ -14,6 +14,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
+swaggerDocs(app)
 
 app.use("/api/v1", require("@/routes/index"))
 app.listen(8080, () => console.log("http server running on port 8080")) //http server 8080

@@ -7,6 +7,28 @@ const db = require("@/config/db/mongoDB")
 const { ObjectID, ObjectId } = require("bson")
 
 //get all movies
+/**
+ * @openapi
+ * /api/v1/workouts:
+ *   get:
+ *     tags:
+ *       - Workouts
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     type: object
+ */
 router.get("/", movieController.getAllMovies)
 //get one movie
 router.get("/:id", verify, movieController.getOneMovie)
