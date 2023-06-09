@@ -5,7 +5,8 @@ const verify = require("@/middlewares/authVerify")
 const db = require("@/config/db/mongoDB")
 const { ObjectID, ObjectId } = require("bson")
 
-router.get("/getMovies", verify, async function (req, res) {
+//get all movies
+router.get("/", verify, async function (req, res) {
   //pagination receive two params: items_per_page
   const total = await db.collection("movies").count()
   if (req.query.items_per_page && req.query.page_number) {
@@ -23,17 +24,24 @@ router.get("/getMovies", verify, async function (req, res) {
   }
 })
 
-router.post("/findOneMovie", verify, async function (req, res) {
+//get one movie
+router.get("/:id", verify, async function (req, res) {
   const movie = await db.collection("movies").findOne({ _id: ObjectId(req.body.id) })
   res.send(movie)
 })
 
-router.post("/updateMovie/:id", verify, async (req, res) => {
+//careate one movie
+router.post("/", verify, async function (req, res) {
+  //
+})
+
+//upodate one movie
+router.put("/:id", verify, async (req, res) => {
   const movie = await db.collection("movies").findOneAndUpdate({ _id: ObjectId(req.params.id) }, { $set: { ...req.body } })
   res.send(movie)
 })
 
-router.delete("/deleteMovie/:id", verify, async function (req, res) {
+router.delete("/:id", verify, async function (req, res) {
   const movie = await db.collection("movies").findOneAndDelete({ _id: ObjectId(req.params.id) })
   res.send({ message: "You have successfully deleted this item." })
 })
