@@ -5,13 +5,8 @@ const movieServices = require("@/services/movie")
 const getAllMovies = async (req, res) => {
   //pagination receive two params: items_per_page
   const pagination = req.query
-  console.log(pagination)
-  try {
-    const allMovies = await movieServices.getAllMovies(pagination)
-    res.send({ status: "ok", data: allMovies })
-  } catch (error) {
-    res.status(error?.status || 500).send({ status: "FAILED", data: { error: error?.message || error } })
-  }
+  const allMovies = await movieServices.getAllMovies(pagination)
+  res.send({ status: "ok", data: allMovies })
 }
 
 const getOneMovie = async (req, res) => {
