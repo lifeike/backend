@@ -1,22 +1,10 @@
 const db = require("@/config/db/mongoDB")
+const movieModel = require("@/models/movie")
 
 // In src/controllers/workoutController.js
 const getAllMovies = async (filterParams) => {
-  //pagination receive two params: items_per_page
-  const total = await db.collection("movies").count()
-  if (filterParams.items_per_page && filterParams.page_number) {
-    const movies = await db
-      .collection("movies")
-      .find({})
-      .skip(filterParams.items_per_page * filterParams.page_number)
-      .limit(+filterParams.items_per_page)
-      .toArray()
-    return { totalPages: total / filterParams.items_per_page, movies }
-  } else {
-    //or  if items_per_page is empty, return all items
-    const movies = await db.collection("movies").find({}).toArray()
-    return { totalPages: null, movies }
-  }
+  const movies = await movieModel.getAllMovies(filterParams)
+  return movies
 }
 
 const getOneMovie = async (req, res) => {
