@@ -3,6 +3,6 @@
 ###  paginated movies
 GET http://localhost:8080/api/v1/movies?items_per_page=1&page_number=0 
 ###  all movies
-GET http://localhost:8080/api/v1/movies?items_per_page=2&page_number=0 
+GET http://localhost:8080/api/v1/movies 
 
 
