@@ -4,6 +4,8 @@ const path = require("path")
 const movieController = require("@/controllers/movie")
 const verify = require("@/middlewares/authVerify")
 const db = require("@/config/db/mongoDB")
+const movieValidation = require("@/validations/movie")
+const validate = require("@/middlewares/validate")
 const { ObjectID, ObjectId } = require("bson")
 
 /**
@@ -28,7 +30,7 @@ const { ObjectID, ObjectId } = require("bson")
  *                   items:
  *                     type: object
  */
-router.get("/", movieController.getAllMovies)
+router.get("/", validate(movieValidation.createUser), movieController.getAllMovies)
 /**
  * @openapi
  * /api/v1/moives/:id:
