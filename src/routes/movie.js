@@ -30,7 +30,7 @@ const { ObjectID, ObjectId } = require("bson")
  *                   items:
  *                     type: object
  */
-router.get("/", validate(movieValidation.createUser), movieController.getAllMovies)
+router.get("/", validate(movieValidation.getAllMovies), movieController.getAllMovies)
 /**
  * @openapi
  * /api/v1/moives/:id:

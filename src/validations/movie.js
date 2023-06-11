@@ -1,6 +1,6 @@
 const Joi = require("joi")
 
-const getUsers = {
+const getAllMovies = {
   query: Joi.object().keys({
     name: Joi.string(),
     role: Joi.string(),
