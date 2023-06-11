@@ -1,10 +1,12 @@
 const db = require("@/config/db/mongoDB")
 const movieServices = require("@/services/movie")
+const pick = require("@/utils/pick")
 
 // In src/controllers/workoutController.js
 const getAllMovies = async (req, res) => {
   //pagination receive two params: items_per_page
-  const pagination = req.query
+  const pagination = pick(req.query, ["items_per_page", "page_number"])
+  console.log(pagination)
   const allMovies = await movieServices.getAllMovies(pagination)
   res.send({ status: "ok", data: allMovies })
 }
