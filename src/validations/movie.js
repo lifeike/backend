@@ -2,7 +2,7 @@ const Joi = require("joi")
 
 const getAllMovies = {
   query: Joi.object().keys({
-    name: Joi.string().required(),
+    name: Joi.string(),
     role: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
