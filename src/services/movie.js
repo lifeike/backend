@@ -2,8 +2,8 @@ const db = require("@/config/db/mongoDB")
 const movieModel = require("@/models/movie")
 
 // In src/controllers/workoutController.js
-const getAllMovies = async (filterParams) => {
-  const movies = await movieModel.getAllMovies(filterParams)
+const getAllMovies = async (filter) => {
+  const movies = await movieModel.getAllMovies(filter)
   return movies
 }
 

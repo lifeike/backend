@@ -9,3 +9,7 @@ const getAllMovies = {
     page: Joi.number().integer(),
   }),
 }
+
+module.exports = {
+  getAllMovies,
+}
