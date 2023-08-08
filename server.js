@@ -1,4 +1,4 @@
-import "module-alias/register" //@ path alias
+require("module-alias/register") //@ path alias
 const express = require("express")
 const { swaggerDocs } = require("@/config/swagger")
 const cors = require("cors")
