@@ -1,6 +1,6 @@
-const db = require("@/config/db/mongoDB")
+import db from "@/config/db/mongoDB"
 
-const getAllMovies = async (filterParams) => {
+const getAllMovies = async (filterParams: any) => {
   const total = await db.collection("movies").count()
   const currentPage = filterParams.page_number
   const movies = await db
