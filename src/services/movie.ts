@@ -12,6 +12,9 @@ export const getAll = async (filter: any) => {
 
 export const getOne = async (id: string) => {
   const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
+  if (!movie) {
+    throw new ApiError(httpStatus.NOT_FOUND, "Movie not found")
+  }
   return movie
 }
 
