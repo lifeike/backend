@@ -2,7 +2,7 @@ import db from "@/config/db/mongoDB"
 import * as movieModel from "@/models/movie"
 
 // In src/controllers/workoutController.js
-export const getAllMovies = async (filter: any) => {
+export const getAll = async (filter: any) => {
   const movies = await movieModel.getAll(filter)
   return movies
 }
