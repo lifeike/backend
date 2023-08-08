@@ -1,7 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const path = require("path")
-const movieController = require("@/controllers/movie")
+import * as movieController from "@/controllers/movie"
 const verify = require("@/middlewares/authVerify")
 const db = require("@/config/db/mongoDB")
 const movieValidation = require("@/validations/movie")
