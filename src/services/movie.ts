@@ -1,9 +1,9 @@
 import db from "@/config/db/mongoDB"
-const movieModel = require("@/models/movie")
+import * as movieModel from "@/models/movie"
 
 // In src/controllers/workoutController.js
 const getAllMovies = async (filter: any) => {
-  const movies = await movieModel.getAllMovies(filter)
+  const movies = await movieModel.getAll(filter)
   return movies
 }
 
