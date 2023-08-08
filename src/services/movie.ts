@@ -7,9 +7,9 @@ export const getAll = async (filter: any) => {
   return movies
 }
 
-export const getOne = async (req: any, res: any) => {
-  const movie = await db.collection("movies").findOne({ _id: req.body.id })
-  res.send(movie)
+export const getOne = async (id: string) => {
+  const movie = await db.collection("movies").findOne({ _id: id })
+  return movie
 }
 
 export const createOne = async (req: any, res: any) => {
