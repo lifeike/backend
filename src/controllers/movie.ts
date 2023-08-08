@@ -9,7 +9,7 @@ const catchAsync = require("@/utils/catchAsync")
 export const getAll = catchAsync(async (req: Request, res: Response) => {
   //pagination receive two params: items_per_page
   const filter = pick(req.query, ["items_per_page", "page_number"])
-  const allMovies = await movieServices.getAllMovies(filter)
+  const allMovies = await movieServices.getAll(filter)
   res.send({ status: "ok", data: allMovies })
 })
 
