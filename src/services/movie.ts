@@ -1,6 +1,7 @@
 import db from "@/config/db/mongoDB"
 import { ObjectId } from "mongodb"
 import * as movieModel from "@/models/movie"
+import to from "await-to-js"
 
 // In src/controllers/workoutController.js
 export const getAll = async (filter: any) => {
@@ -9,12 +10,9 @@ export const getAll = async (filter: any) => {
 }
 
 export const getOne = async (id: string) => {
-  try {
-    const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
-    return movie
-  } catch (error) {
-    return error
-  }
+  const [error, movie] = await to(db.collection("movies").findOne({ _id: new ObjectId(id) }))
+  if (movie) return movie
+  return error
 }
 
 export const createOne = async (req: any, res: any) => {
