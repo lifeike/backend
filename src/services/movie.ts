@@ -11,11 +11,12 @@ export const getAll = async (filter: any) => {
 }
 
 export const getOne = async (id: string) => {
-  const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
-  if (!movie) {
-    throw new ApiError(httpStatus.NOT_FOUND, "User not found")
+  try {
+    const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
+    return movie
+  } catch (error) {
+    return error
   }
-  return movie
 }
 
 export const createOne = async (req: any, res: any) => {
