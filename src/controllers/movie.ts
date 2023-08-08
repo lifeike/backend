@@ -13,10 +13,10 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
   res.send({ status: "ok", data: allMovies })
 })
 
-export const getOne = async (req: Request, res: Response) => {
+export const getOne = catchAsync(async (req: Request, res: Response) => {
   const movie = await movieServices.getOne(req.params.id)
   res.send(movie)
-}
+})
 
 export const createOne = async (req: Request, res: Response) => {
   res.send("Create a new movie")

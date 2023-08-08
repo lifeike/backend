@@ -11,12 +11,8 @@ export const getAll = async (filter: any) => {
 }
 
 export const getOne = async (id: string) => {
-  try {
-    const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
-    return movie
-  } catch (error) {
-    return error
-  }
+  const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
+  return movie
 }
 
 export const createOne = async (req: any, res: any) => {
