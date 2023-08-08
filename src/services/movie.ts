@@ -1,6 +1,8 @@
 import db from "@/config/db/mongoDB"
 import { ObjectId } from "mongodb"
 import * as movieModel from "@/models/movie"
+const httpStatus = require("http-status")
+const ApiError = require("@/utils/ApiError")
 
 // In src/controllers/workoutController.js
 export const getAll = async (filter: any) => {
@@ -10,6 +12,9 @@ export const getAll = async (filter: any) => {
 
 export const getOne = async (id: string) => {
   const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
+  if (!movie) {
+    throw new ApiError(httpStatus.NOT_FOUND, "User not found")
+  }
   return movie
 }
 
