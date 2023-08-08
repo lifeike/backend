@@ -53,7 +53,7 @@ router.get("/", validate(movieValidation.getAllMovies), movieController.getAll)
  *                   items:
  *                     type: object
  */
-router.get("/:id", verify, movieController.getOne)
+router.get("/:id", validate(movieValidation.getAllMovies), movieController.getOne)
 /**
  * @openapi
  * /api/v1/moives:
