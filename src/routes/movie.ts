@@ -76,7 +76,7 @@ router.get("/:id", validate(movieValidation.getAllMovies), movieController.getOn
  *                   items:
  *                     type: object
  */
-router.post("/", verify, movieController.createOne)
+router.post("/", movieController.createOne)
 /**
  * @openapi
  * /api/v1/moives/:id:
@@ -99,7 +99,7 @@ router.post("/", verify, movieController.createOne)
  *                   items:
  *                     type: object
  */
-router.put("/:id", verify, movieController.updateOne)
+router.put("/:id", movieController.updateOne)
 /**
  * @openapi
  * /api/v1/moives:
@@ -122,6 +122,6 @@ router.put("/:id", verify, movieController.updateOne)
  *                   items:
  *                     type: object
  */
-router.delete("/:id", verify, movieController.deleteOne)
+router.delete("/:id", movieController.deleteOne)
 
 module.exports = router
