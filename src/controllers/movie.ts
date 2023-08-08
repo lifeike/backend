@@ -14,9 +14,7 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
 })
 
 export const getOne = async (req: Request, res: Response) => {
-  console.log(req.params)
-  const filter = pick(req.query, ["id"])
-  const movie = await db.collection("movies").findOne({ _id: req.body.id })
+  const movie = await db.collection("movies").findOne({ _id: req.params.id })
   res.send(movie)
 }
 
