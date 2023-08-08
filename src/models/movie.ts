@@ -1,6 +1,6 @@
 import db from "@/config/db/mongoDB"
 
-const getAllMovies = async (filterParams: any) => {
+export const getAllMovies = async (filterParams: any) => {
   const total = await db.collection("movies").count()
   const currentPage = filterParams.page_number
   const movies = await db
@@ -10,8 +10,4 @@ const getAllMovies = async (filterParams: any) => {
     .limit(+filterParams.items_per_page)
     .toArray()
   return { totalPages: total / filterParams.items_per_page, movies, currentPage }
-}
-
-module.exports = {
-  getAllMovies,
 }
