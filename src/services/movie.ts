@@ -11,8 +11,10 @@ export const getAll = async (filter: any) => {
 
 export const getOne = async (id: string) => {
   const [error, movie] = await to(db.collection("movies").findOne({ _id: new ObjectId(id) }))
-  if (movie) return movie
-  return error
+  console.log(movie)
+  console.log(error)
+  // if (movie) return movie
+  // return error
 }
 
 export const createOne = async (req: any, res: any) => {
