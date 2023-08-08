@@ -30,7 +30,7 @@ const { ObjectID, ObjectId } = require("bson")
  *                   items:
  *                     type: object
  */
-router.get("/", validate(movieValidation.getAllMovies), movieController.getAllMovies)
+router.get("/", validate(movieValidation.getAllMovies), movieController.getAll)
 /**
  * @openapi
  * /api/v1/moives/:id:
@@ -53,7 +53,7 @@ router.get("/", validate(movieValidation.getAllMovies), movieController.getAllMo
  *                   items:
  *                     type: object
  */
-router.get("/:id", verify, movieController.getOneMovie)
+router.get("/:id", verify, movieController.getOne)
 /**
  * @openapi
  * /api/v1/moives:
@@ -76,7 +76,7 @@ router.get("/:id", verify, movieController.getOneMovie)
  *                   items:
  *                     type: object
  */
-router.post("/", verify, movieController.createMovie)
+router.post("/", verify, movieController.createOne)
 /**
  * @openapi
  * /api/v1/moives/:id:
@@ -99,7 +99,7 @@ router.post("/", verify, movieController.createMovie)
  *                   items:
  *                     type: object
  */
-router.put("/:id", verify, movieController.updateMovie)
+router.put("/:id", verify, movieController.updateOne)
 /**
  * @openapi
  * /api/v1/moives:
@@ -122,6 +122,6 @@ router.put("/:id", verify, movieController.updateMovie)
  *                   items:
  *                     type: object
  */
-router.delete("/:id", verify, movieController.deleteMovie)
+router.delete("/:id", verify, movieController.deleteOne)
 
 module.exports = router

@@ -13,21 +13,21 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
   res.send({ status: "ok", data: allMovies })
 })
 
-export const getOneMovie = async (req: Request, res: Response) => {
+export const getOne = async (req: Request, res: Response) => {
   const movie = await db.collection("movies").findOne({ _id: req.body.id })
   res.send(movie)
 }
 
-export const createMovie = async (req: Request, res: Response) => {
+export const createOne = async (req: Request, res: Response) => {
   res.send("Create a new movie")
 }
 
-export const updateMovie = async (req: Request, res: Response) => {
+export const updateOne = async (req: Request, res: Response) => {
   const movie = await db.collection("movies").findOneAndUpdate({ _id: req.params.id }, { $set: { ...req.body } })
   res.send(movie)
 }
 
-export const deleteMovie = async (req: Request, res: Response) => {
+export const deleteOne = async (req: Request, res: Response) => {
   const movie = await db.collection("movies").findOneAndDelete({ _id: req.params.id })
   res.send({ message: "You have successfully deleted this item." })
 }
