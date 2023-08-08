@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express"
-const db = require("@/config/db/mongoDB")
+// const db = require("@/config/db/mongoDB")
+import db from "@/config/db/mongoDB"
 const movieServices = require("@/services/movie")
 const pick = require("@/utils/pick")
 const catchAsync = require("@/utils/catchAsync")

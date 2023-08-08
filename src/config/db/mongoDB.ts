@@ -7,4 +7,4 @@ console.log("database running.")
 
 const db = client.db("template")
 
-module.exports = db
+export default db
