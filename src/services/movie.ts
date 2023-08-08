@@ -9,8 +9,12 @@ export const getAll = async (filter: any) => {
 }
 
 export const getOne = async (id: string) => {
-  const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
-  return movie
+  try {
+    const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
+    return movie
+  } catch (error) {
+    return error
+  }
 }
 
 export const createOne = async (req: any, res: any) => {

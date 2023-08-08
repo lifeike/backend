@@ -14,8 +14,8 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
 })
 
 export const getOne = async (req: Request, res: Response) => {
-  console.log(req.params.id)
   const movie = await movieServices.getOne(req.params.id)
+  console.log(movie.message)
   res.send(movie)
 }
 
