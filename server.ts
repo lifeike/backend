@@ -1,9 +1,8 @@
-require("module-alias/register") //@ path alias
-
-const express = require("express")
-const { swaggerDocs } = require("@/config/swagger")
-const cors = require("cors")
-var bodyParser = require("body-parser")
+import "module-alias/register" //@ path alias
+import express from "express"
+import swaggerDocs from "@/config/swagger"
+import cors from "cors"
+import bodyParser from "body-parser"
 //add .env to process.env
 const dotenv = require("dotenv")
 dotenv.config()
@@ -16,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 //run swagger server
-swaggerDocs(app)
+swaggerDocs(app, 8080)
 
 app.use("/api/v1", require("@/routes/index"))
 app.listen(8080, () => console.log("http server running on port 8080")) //http server 8080
