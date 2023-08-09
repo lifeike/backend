@@ -3,6 +3,7 @@ import { ObjectId } from "mongodb"
 import * as movieModel from "@/models/movie"
 const httpStatus = require("http-status")
 const ApiError = require("@/utils/ApiError")
+const catchAsync = require("@/utils/catchAsync")
 
 // In src/controllers/workoutController.js
 export const getAll = async (filter: any) => {
