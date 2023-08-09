@@ -13,6 +13,8 @@ export const getAll = async (filter: any) => {
 
 export const getOne = async (id: string) => {
   const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
+  console.log("test")
+  console.log("test")
   return movie
 }
 
