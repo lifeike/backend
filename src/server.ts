@@ -1,5 +1,6 @@
 import "module-alias/register" //@ path alias
 import express from "express"
+import helmet from "helmet"
 import swaggerDocs from "@/config/swagger"
 import cors from "cors"
 import bodyParser from "body-parser"
@@ -15,6 +16,11 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 //run swagger server
 swaggerDocs(app, config.port)
+// set security HTTP headers
+app.use(helmet())
+// sanitize request data
+app.use(xss())
+app.use(mongoSanitize())
 
 app.use("/api/v1", require("@/routes/index"))
 app.use(errorConverter)
