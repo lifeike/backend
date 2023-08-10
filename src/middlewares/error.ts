@@ -35,5 +35,5 @@ export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
 
   // if (config.env === "development") logger.error(err)
 
-  res.status(statusCode).send(response)
+  res.status(statusCode || 500).send(response)
 }
