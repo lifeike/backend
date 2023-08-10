@@ -6,3 +6,8 @@ export const getAllMovies = {
     page_number: Joi.string().required(),
   }),
 }
+export const getMovie = {
+  params: Joi.object().keys({
+    userId: Joi.string().custom(objectId),
+  }),
+}
