@@ -3,9 +3,7 @@ import express from "express"
 import swaggerDocs from "@/config/swagger"
 import cors from "cors"
 import bodyParser from "body-parser"
-//add .env to process.env
-const dotenv = require("dotenv")
-dotenv.config()
+import config from "@/config/config"
 
 const app = express()
 // app.use(cors({ origin: "https://main.d3nhqx7mts8be0.amplifyapp.com/" })) //enable production url
