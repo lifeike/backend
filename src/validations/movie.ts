@@ -1,4 +1,5 @@
 const Joi = require("joi")
+const { password, objectId } = require("./custom.validation")
 
 export const getAllMovies = {
   query: Joi.object().keys({
