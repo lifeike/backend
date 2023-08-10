@@ -9,6 +9,7 @@ export const getAllMovies = {
 }
 export const getMovie = {
   params: Joi.object().keys({
-    userId: Joi.string().custom(objectId),
+    // userId: Joi.string().custom(objectId),
+    id: Joi.string(),
   }),
 }
