@@ -1,6 +1,8 @@
 import "module-alias/register" //@ path alias
 import express from "express"
 import helmet from "helmet"
+import mongoSanitize from "express-mongo-sanitize"
+import compression from 'compression'
 import swaggerDocs from "@/config/swagger"
 import cors from "cors"
 import bodyParser from "body-parser"
@@ -19,8 +21,9 @@ swaggerDocs(app, config.port)
 // set security HTTP headers
 app.use(helmet())
 // sanitize request data
-app.use(xss())
 app.use(mongoSanitize())
+// gzip compression
+app.use(compression())
 
 app.use("/api/v1", require("@/routes/index"))
 app.use(errorConverter)
