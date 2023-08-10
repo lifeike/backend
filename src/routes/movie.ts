@@ -8,6 +8,12 @@ const movieValidation = require("@/validations/movie")
 const validate = require("@/middlewares/validate")
 const { ObjectID, ObjectId } = require("bson")
 
+router.get("/", validate(movieValidation.getAllMovies), movieController.getAll)
+router.get("/:id", validate(movieValidation.getAllMovies), movieController.getOne)
+router.post("/", movieController.createOne)
+router.put("/:id", movieController.updateOne)
+router.delete("/:id", movieController.deleteOne)
+
 /**
  * @openapi
  * /api/v1/moives:
@@ -30,7 +36,6 @@ const { ObjectID, ObjectId } = require("bson")
  *                   items:
  *                     type: object
  */
-router.get("/", validate(movieValidation.getAllMovies), movieController.getAll)
 /**
  * @openapi
  * /api/v1/moives/:id:
@@ -53,7 +58,6 @@ router.get("/", validate(movieValidation.getAllMovies), movieController.getAll)
  *                   items:
  *                     type: object
  */
-router.get("/:id", validate(movieValidation.getAllMovies), movieController.getOne)
 /**
  * @openapi
  * /api/v1/moives:
@@ -76,7 +80,6 @@ router.get("/:id", validate(movieValidation.getAllMovies), movieController.getOn
  *                   items:
  *                     type: object
  */
-router.post("/", movieController.createOne)
 /**
  * @openapi
  * /api/v1/moives/:id:
@@ -99,7 +102,6 @@ router.post("/", movieController.createOne)
  *                   items:
  *                     type: object
  */
-router.put("/:id", movieController.updateOne)
 /**
  * @openapi
  * /api/v1/moives:
@@ -122,6 +124,4 @@ router.put("/:id", movieController.updateOne)
  *                   items:
  *                     type: object
  */
-router.delete("/:id", movieController.deleteOne)
-
 module.exports = router
