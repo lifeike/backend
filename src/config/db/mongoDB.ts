@@ -1,7 +1,7 @@
 // const { MongoClient } = require("mongodb")
-const config = require("@/config/db/mongoDB")
+const config = require("@/config/config")
 import { MongoClient } from "mongodb"
-console.log(config.MONGODB_URL)
+console.log(config.parsed)
 const client = new MongoClient(config.MONGODB_URL)
 client.connect()
 console.log("database running.")
