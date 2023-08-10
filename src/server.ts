@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 //run swagger server
-swaggerDocs(app, 8080)
+swaggerDocs(app, config.port)
 
 app.use("/api/v1", require("@/routes/index"))
 app.listen(8080, () => console.log("http server running on port 8080")) //http server 8080
