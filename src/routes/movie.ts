@@ -8,8 +8,8 @@ const movieValidation = require("@/validations/movie")
 const validate = require("@/middlewares/validate")
 const { ObjectID, ObjectId } = require("bson")
 
-router.routes("/").get(validate(movieValidation.getAllMovies), movieController.getAll).post(movieController.createOne)
-router.routes("/:id").get(validate(movieValidation.getAllMovies), movieController.getOne).put(movieController.updateOne).delete(movieController.deleteOne)
+router.route("/").get(validate(movieValidation.getAllMovies), movieController.getAll).post(movieController.createOne)
+router.route("/:id").get(validate(movieValidation.getAllMovies), movieController.getOne).put(movieController.updateOne).delete(movieController.deleteOne)
 
 /**
  * @openapi
