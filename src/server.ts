@@ -2,11 +2,13 @@ import "module-alias/register" //@ path alias
 import express from "express"
 import helmet from "helmet"
 import mongoSanitize from "express-mongo-sanitize"
-import compression from 'compression'
+import compression from "compression"
 import swaggerDocs from "@/config/swagger"
 import cors from "cors"
 import bodyParser from "body-parser"
 import config from "@/config/config"
+const ApiError = require("@/utils/ApiError")
+import httpStatus from "http-status"
 import { errorConverter, errorHandler } from "@/middlewares/error"
 
 const app = express()
@@ -26,6 +28,11 @@ app.use(mongoSanitize())
 app.use(compression())
 
 app.use("/api/v1", require("@/routes/index"))
+// send back a 404 error for any unknown api request
+app.use((req, res, next) => {
+  next(new ApiError(httpStatus.NOT_FOUND, "Not found"))
+})
+
 app.use(errorConverter)
 app.use(errorHandler)
 app.listen(config.port, () => console.log(`http server running on port ${config.port}`)) //http server 8080
