@@ -1,5 +1,5 @@
 import db from "@/config/db/mongoDB"
-import { ObjectID, ObjectId } from "mongodb"
+import { ObjectId } from "mongodb"
 const collectionName = "movie"
 
 export const getAll = async (filterParams: any) => {
