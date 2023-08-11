@@ -16,8 +16,9 @@ export const getOne = async (id: string) => {
   return movie
 }
 
-export const createOne = async (req: any, res: any) => {
-  res.send("Create a new movie")
+export const createOne = async (movie: any) => {
+  const result = null
+  return result
 }
 
 export const updateOne = async (req: any, res: any) => {

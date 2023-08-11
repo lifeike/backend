@@ -19,6 +19,7 @@ export const getOne = catchAsync(async (req: Request, res: Response) => {
 })
 
 export const createOne = async (req: Request, res: Response) => {
+  console.log(req)
   res.send("Create a new movie")
 }
 
