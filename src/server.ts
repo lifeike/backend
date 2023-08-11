@@ -9,6 +9,7 @@ import bodyParser from "body-parser"
 import config from "@/config/config"
 import ApiError from "@/utils/ApiError"
 import httpStatus from "http-status"
+import v1Router from "./routes/index"
 import { errorConverter, errorHandler } from "@/middlewares/error"
 
 const app = express()
@@ -27,7 +28,7 @@ app.use(mongoSanitize())
 // gzip compression
 app.use(compression())
 
-app.use("/api/v1", require("@/routes/index"))
+app.use("/api/v1", v1Router)
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
   next(new ApiError(httpStatus.NOT_FOUND, "Not found"))
