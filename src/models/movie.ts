@@ -1,4 +1,5 @@
 import db from "@/config/db/mongoDB"
+import { ObjectId } from "mongodb"
 
 export const getAll = async (filterParams: any) => {
   const total = await db.collection("movies").count()
@@ -12,6 +13,9 @@ export const getAll = async (filterParams: any) => {
   return { totalPages: total / filterParams.items_per_page, movies, currentPage }
 }
 
-export const getOne = async () => {}
+export const getOne = async (id: string) => {
+  const movie = await db.collection("movies").findOne({ _id: new ObjectId(id) })
+  return movie
+}
 export const updateOne = async () => {}
 export const deleteOne = async () => {}
