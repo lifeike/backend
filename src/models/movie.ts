@@ -21,4 +21,7 @@ export const updateOne = async (id: string, body: any) => {
   const movie = await db.collection("movies").findOneAndUpdate({ _id: id }, { $set: { body } })
   return movie
 }
-export const deleteOne = async () => {}
+export const deleteOne = async (id: string) => {
+  const movie = await db.collection("movies").findOneAndDelete({ _id: id })
+  return movie
+}
