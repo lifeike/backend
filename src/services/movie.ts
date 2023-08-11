@@ -26,6 +26,7 @@ export const updateOne = async (id: string, body: any) => {
 }
 
 export const deleteOne = async (id: string) => {
-  const movie = await movieModel.deleteOne({ _id: id })
-  res.send({ message: "You have successfully deleted this item." })
+  const movie = await movieModel.deleteOne(id)
+  if (!movie) throw new ApiError(httpStatus.NOT_FOUND, "Movie updates failed")
+  return movie
 }
