@@ -1,7 +1,7 @@
 import db from "@/config/db/mongoDB"
 import * as movieModel from "@/models/movie"
 import httpStatus from "http-status"
-const ApiError = require("@/utils/ApiError")
+import ApiError from "@/utils/ApiError"
 
 export const createOne = async (movie: any) => {
   const result = null
