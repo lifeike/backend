@@ -10,6 +10,7 @@ const { ObjectID, ObjectId } = require("bson")
 
 router.route("/").get(validate(movieValidation.getAll), movieController.getAll).post(movieController.createOne)
 router.route("/:id").get(validate(movieValidation.getOne), movieController.getOne).put(movieController.updateOne).delete(movieController.deleteOne)
+export default router
 
 /**
  * @openapi
@@ -122,4 +123,3 @@ router.route("/:id").get(validate(movieValidation.getOne), movieController.getOn
  *                   items:
  *                     type: object
  */
-module.exports = router
