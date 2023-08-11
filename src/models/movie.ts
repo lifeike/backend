@@ -1,5 +1,5 @@
 import db from "@/config/db/mongoDB"
-import { ObjectId } from "mongodb"
+import { ObjectID, ObjectId } from "mongodb"
 const collectionName = "movie"
 
 export const getAll = async (filterParams: any) => {
@@ -19,7 +19,7 @@ export const getOne = async (id: string) => {
   return movie
 }
 export const updateOne = async (id: string, body: any) => {
-  const movie = await db.collection(collectionName).findOneAndUpdate({ _id: id }, { $set: { body } })
+  const movie = await db.collection(collectionName).findOneAndUpdate({ _id: new ObjectId(id) }, { $set: { body } })
   return movie
 }
 export const deleteOne = async (id: string) => {
