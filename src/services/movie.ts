@@ -1,8 +1,7 @@
 import db from "@/config/db/mongoDB"
 import * as movieModel from "@/models/movie"
-const httpStatus = require("http-status")
+import httpStatus from "http-status"
 const ApiError = require("@/utils/ApiError")
-const catchAsync = require("@/utils/catchAsync")
 
 // In src/controllers/workoutController.js
 export const getAll = async (filter: any) => {
