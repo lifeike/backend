@@ -4,7 +4,7 @@ import httpStatus from "http-status"
 import ApiError from "@/utils/ApiError"
 
 export const createOne = async (movie: any) => {
-  const result = null
+  const result = await movieModel.createOne(movie)
   return result
 }
 export const getAll = async (filter: any) => {
