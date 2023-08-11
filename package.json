@@ -37,6 +37,7 @@
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.3",
     "sync-request": "^6.1.0",
+    "ts-node": "^10.9.1",
     "xss-clean": "^0.1.4"
   },
   "devDependencies": {
