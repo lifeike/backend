@@ -7,7 +7,7 @@ import swaggerDocs from "@/config/swagger"
 import cors from "cors"
 import bodyParser from "body-parser"
 import config from "@/config/config"
-const ApiError = require("@/utils/ApiError")
+import ApiError from "@/utils/ApiError"
 import httpStatus from "http-status"
 import { errorConverter, errorHandler } from "@/middlewares/error"
 
