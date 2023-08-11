@@ -21,6 +21,8 @@ export const getOne = async (id: string) => {
 export const updateOne = async (id: string, body: any) => {
   const movie = await movieModel.getOne(id)
   if (!movie) throw new ApiError(httpStatus.NOT_FOUND, "Movie not found")
+  const result = await movieModel.updateOne(id, body)
+  return result
 }
 
 export const deleteOne = async (req: any, res: any) => {
