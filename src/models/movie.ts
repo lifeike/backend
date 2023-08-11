@@ -14,6 +14,11 @@ export const getAll = async (filterParams: any) => {
   return { totalPages: total / filterParams.items_per_page, movies, currentPage }
 }
 
+export const createOne = async (body: any) => {
+  const movie = await db.collection(collectionName).insertOne(body)
+  return movie
+}
+
 export const getOne = async (id: string) => {
   const movie = await db.collection(collectionName).findOne({ _id: new ObjectId(id) })
   return movie
