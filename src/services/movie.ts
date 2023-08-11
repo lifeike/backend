@@ -18,9 +18,9 @@ export const getOne = async (id: string) => {
   return movie
 }
 
-export const updateOne = async (req: any, res: any) => {
-  const movie = await db.collection("movies").findOneAndUpdate({ _id: req.params.id }, { $set: { ...req.body } })
-  res.send(movie)
+export const updateOne = async (id: string, body: any) => {
+  const movie = await movieModel.getOne(id)
+  if (!movie) throw new ApiError(httpStatus.NOT_FOUND, "Movie not found")
 }
 
 export const deleteOne = async (req: any, res: any) => {
