@@ -1,7 +1,7 @@
 // const mongoose = require('mongoose');
 // const httpStatus = require('http-status');
 // const logger = require('../config/logger');
-const ApiError = require("../utils/ApiError")
+import ApiError from "../utils/ApiError"
 import httpStatus from "http-status"
 import config from "@/config/config"
 import { ErrorRequestHandler } from "express"
