@@ -1,6 +1,6 @@
 import db from "@/config/db/mongoDB"
 import { ObjectId } from "mongodb"
-const collectionName = "movie"
+const collectionName = "movies"
 
 export const getAll = async (filterParams: any) => {
   const total = await db.collection(collectionName).count()
@@ -14,9 +14,9 @@ export const getAll = async (filterParams: any) => {
   return { totalPages: total / filterParams.items_per_page, movies, currentPage }
 }
 
-export const createOne = async (body: any) => {
-  const movie = await db.collection(collectionName).insertOne(body)
-  return movie
+export const createOne = async (movie: any) => {
+  const result = await db.collection(collectionName).insertOne(movie)
+  return result
 }
 
 export const getOne = async (id: string) => {
