@@ -1,13 +1,9 @@
-const express = require("express")
-const router = express.Router()
-const path = require("path")
+import express from "express"
 import * as movieController from "@/controllers/movie"
-const verify = require("@/middlewares/authVerify")
-const db = require("@/config/db/mongoDB")
 const movieValidation = require("@/validations/movie")
 const validate = require("@/middlewares/validate")
-const { ObjectID, ObjectId } = require("bson")
 
+const router = express.Router()
 router.route("/").get(validate(movieValidation.getAll), movieController.getAll).post(movieController.createOne)
 router.route("/:id").get(validate(movieValidation.getOne), movieController.getOne).put(movieController.updateOne).delete(movieController.deleteOne)
 export default router
