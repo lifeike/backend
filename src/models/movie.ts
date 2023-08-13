@@ -3,14 +3,13 @@ import { ObjectId } from "mongodb"
 import TABLES from "@/config/db/tables"
 
 export const getAll = async (filter: any, options: any) => {
-  const total = await db.collection(TABLES.MOVIES).count()
   const movies = await db
     .collection(TABLES.MOVIES)
-    .find({ title: options.search })
+    .find({ Title: { $regex: filter.search, $options: "i" } })
     .skip(options.perPage * options.pageNo)
     .limit(+options.perPage)
     .toArray()
-  return { totalPages: Math.floor(total / options.perPage), movies, pageNo: options.pageNo, perPage: options.perPage }
+  return { totalPages: Math.floor(movies.length / options.perPage), movies, pageNo: options.pageNo, perPage: options.perPage }
 }
 
 export const createOne = async (movie: any) => {
