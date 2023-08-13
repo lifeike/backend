@@ -7,7 +7,7 @@ const catchAsync = require("@/utils/catchAsync")
 
 // In src/controllers/workoutController.js
 export const getAll = catchAsync(async (req: Request, res: Response) => {
-  const filter = pick(req.query, ["name", "role"])
+  const filter = pick(req.query, ["search", "role"])
   const options = pick(req.query, ["sortBy", "perPage", "pageNo"])
   if (!options?.perPage || options?.perPage <= 0) options.perPage = 10
   if (!options?.pageNo || options?.pageNo <= 0) options.pageNo = 0

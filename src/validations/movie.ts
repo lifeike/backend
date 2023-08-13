@@ -3,8 +3,9 @@ const { password, objectId } = require("./custom.validation")
 
 export const getAll = {
   query: Joi.object().keys({
-    pageNo: Joi.string(),
-    perPage: Joi.string(),
+    search: Joi.string(),
+    pageNo: Joi.number(),
+    perPage: Joi.number(),
   }),
 }
 export const getOne = {
