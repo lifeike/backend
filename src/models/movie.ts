@@ -6,7 +6,7 @@ export const getAll = async (filter: any, options: any) => {
   const total = await db.collection(TABLES.MOVIES).count()
   const movies = await db
     .collection(TABLES.MOVIES)
-    .find({})
+    .find({ title: options.search })
     .skip(options.perPage * options.pageNo)
     .limit(+options.perPage)
     .toArray()
