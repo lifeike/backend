@@ -13,7 +13,7 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
   if (!options?.pageNo) options.pageNo = 0
   else options.pageNo = options?.pageNo - 1
   const movies = await movieServices.getAll(filter, options)
-  movies.data.pageNo = movies.data.pageNo + 1
+  console.log(movies.data?.pageNo)
   res.status(200).send({ data: movies })
 })
 

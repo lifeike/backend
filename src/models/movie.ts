@@ -4,10 +4,6 @@ import TABLES from "@/config/db/tables"
 
 export const getAll = async (filter: any, options: any) => {
   const total = await db.collection(TABLES.MOVIES).count()
-  console.log("total")
-  console.log(options.perPage)
-  console.log(options.pageNo)
-  console.log("total")
   const movies = await db
     .collection(TABLES.MOVIES)
     .find({})
