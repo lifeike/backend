@@ -9,10 +9,8 @@ const catchAsync = require("@/utils/catchAsync")
 export const getAll = catchAsync(async (req: Request, res: Response) => {
   const filter = pick(req.query, ["name", "role"])
   const options = pick(req.query, ["sortBy", "perPage", "pageNo"])
-  if (!options?.perPage || options?.pageNo) {
-    options.perPage = 10
-    options.pageNo = 1
-  }
+  if (!options?.perPage) options.perPage = 10
+  if (!options?.pageNo) options.pageNo = 1
   const movies = await movieServices.getAll(filter, options)
   res.status(200).send({ data: movies })
 })
