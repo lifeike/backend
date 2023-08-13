@@ -14,7 +14,7 @@ export const getAll = async (filter: any, options: any) => {
     .skip(options.perPage * options.pageNo)
     .limit(+options.perPage)
     .toArray()
-  return { totalPages: Math.floor(total / options.perPage), movies, pageNo: options.pageNo, perPage: options.perPage }
+  return { totalPages: Math.floor(total / options.perPage), movies, pageNo: options.pageNo + 1, perPage: options.perPage }
 }
 
 export const createOne = async (movie: any) => {
