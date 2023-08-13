@@ -2,16 +2,16 @@ import db from "@/config/db/mongoDB"
 import { ObjectId } from "mongodb"
 import TABLES from "@/config/db/tables"
 
-export const getAll = async (filterParams: any) => {
+export const getAll = async (filter: any, options: any) => {
   const total = await db.collection(TABLES.MOVIES).count()
-  const currentPage = filterParams.page_number
+  const currentPage = options.pageNo
   const movies = await db
     .collection(TABLES.MOVIES)
     .find({})
-    .skip(filterParams.items_per_page * filterParams.page_number)
-    .limit(+filterParams.items_per_page)
+    .skip(options.perPage * options.pageNo)
+    .limit(+options.perPage)
     .toArray()
-  return { totalPages: total / filterParams.items_per_page, movies, currentPage }
+  return { totalPages: total / options.items_per_page, movies, currentPage }
 }
 
 export const createOne = async (movie: any) => {
