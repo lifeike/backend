@@ -8,6 +8,7 @@ export const getAll = async (filter: any, options: any) => {
     .find({ Title: { $regex: filter.search, $options: "i" } })
     .skip(options.perPage * options.pageNo)
     .limit(+options.perPage)
+    .sort({ Title: 1, Director: 1 })
     .toArray()
   return { totalPages: Math.ceil(movies.length / options.perPage), movies, pageNo: options.pageNo, perPage: options.perPage }
 }
