@@ -4,14 +4,13 @@ import TABLES from "@/config/db/tables"
 
 export const getAll = async (filter: any, options: any) => {
   const total = await db.collection(TABLES.MOVIES).count()
-  const currentPage = options.pageNo
   const movies = await db
     .collection(TABLES.MOVIES)
     .find({})
     .skip(options.perPage * options.pageNo)
     .limit(+options.perPage)
     .toArray()
-  return { totalPages: total / options.items_per_page, movies, currentPage }
+  return { totalPages: total / options.perPage, movies, pageNo: options.pageNo, perPage: options.perPage }
 }
 
 export const createOne = async (movie: any) => {
