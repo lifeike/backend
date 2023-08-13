@@ -11,7 +11,7 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
   const options = pick(req.query, ["sortBy", "perPage", "pageNo"])
   if (!options?.perPage || options?.perPage <= 0) options.perPage = 10
   if (!options?.pageNo || options?.pageNo <= 0) options.pageNo = 0
-  else options.pageNo = options?.pageNo - 1
+  else options.pageNo = options?.pageNo - 1 //db pagination starts with 0
   const result = await movieServices.getAll(filter, options)
   result.pageNo = result.pageNo + 1
   res.status(200).send({ data: result })
