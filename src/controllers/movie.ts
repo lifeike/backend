@@ -12,9 +12,9 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
   if (!options?.perPage || options?.perPage <= 0) options.perPage = 10
   if (!options?.pageNo || options?.pageNo <= 0) options.pageNo = 0
   else options.pageNo = options?.pageNo - 1
-  const movies = await movieServices.getAll(filter, options)
-  movies.pageNo = movies.pageNo + 1
-  res.status(200).send({ data: movies })
+  const result = await movieServices.getAll(filter, options)
+  result.pageNo = result.pageNo + 1
+  res.status(200).send({ data: result })
 })
 
 export const getOne = catchAsync(async (req: Request, res: Response) => {
