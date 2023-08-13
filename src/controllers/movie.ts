@@ -7,7 +7,6 @@ const catchAsync = require("@/utils/catchAsync")
 
 // In src/controllers/workoutController.js
 export const getAll = catchAsync(async (req: Request, res: Response) => {
-  //pagination receive two params: items_per_page
   const filter = pick(req.query, ["name", "role"])
   const options = pick(req.query, ["sortBy", "perPage", "pageNo"])
   const movies = await movieServices.getAll(filter, options)
