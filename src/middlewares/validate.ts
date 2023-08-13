@@ -1,5 +1,5 @@
-const Joi = require("joi")
-const httpStatus = require("http-status")
+import Joi from "joi"
+import httpStatus from "http-status"
 const pick = require("@/utils/pick")
 import ApiError from "@/utils/ApiError"
 import express, { Request, Response } from "express"
