@@ -9,8 +9,9 @@ export const getAll = async (filter: any, options: any) => {
     .skip(options.perPage * options.pageNo)
     .limit(+options.perPage)
     .sort({ Title: 1, Director: 1 })
+    // .project({ Title: 1 }) // returned field control
     .toArray()
-  return { totalPages: Math.ceil(movies.length / options.perPage), movies, pageNo: options.pageNo, perPage: options.perPage }
+  return { totalPages: Math.ceil(movies.length / options.perPage), pageNo: options.pageNo, perPage: options.perPage, movies }
 }
 
 export const createOne = async (movie: any) => {
