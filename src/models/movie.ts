@@ -7,12 +7,12 @@ export const getAll = async (params: commonTypes.SearchParams) => {
   const movies = await db
     .collection(TABLES.MOVIES)
     .find({ Title: { $regex: params.search, $options: "i" } })
-    .skip(params.perPage * params.pageNo)
-    .limit(+params.perPage)
+    .skip((params.pageNo as number) * (params.perPage as number))
+    .limit(1)
     .sort({ Title: 1, Director: 1 })
     // .project({ Title: 1 }) // returned field control
     .toArray()
-  return { totalPages: Math.ceil(movies.length / params.perPage), pageNo: params.pageNo, perPage: params.perPage, movies }
+  return { totalPages: Math.ceil(movies.length / (params.perPage as number)), pageNo: params.pageNo, perPage: params.perPage, movies }
 }
 
 export const createOne = async (movie: any) => {
