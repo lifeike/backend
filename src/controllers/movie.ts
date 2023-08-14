@@ -4,16 +4,16 @@ import db from "@/config/db/mongoDB"
 const movieServices = require("@/services/movie")
 const pick = require("@/utils/pick")
 const catchAsync = require("@/utils/catchAsync")
+import * as commonTypes from "@/types/common"
 
 // In src/controllers/workoutController.js
 export const getAll = catchAsync(async (req: Request, res: Response) => {
-  const filter = pick(req.query, ["search", "role", "status"])
-  const options = pick(req.query, ["sortBy", "perPage", "pageNo"])
-  if (!options?.perPage || options?.perPage <= 0) options.perPage = 10
-  if (!options?.pageNo || options?.pageNo <= 0) options.pageNo = 0
-  else options.pageNo = options?.pageNo - 1 //db pagination starts with 0
-  if (!filter.search) filter.search = ""
-  const result = await movieServices.getAll(filter, options)
+  let { search, role, status, sortBy, perPage, pageNo }: commonTypes.SearchParams = req.query
+  if (perPage === undefined || perPage <= 0) perPage = 10
+  if (pageNo === undefined || pageNo <= 0) pageNo = 0
+  else pageNo = pageNo - 1 //db pagination starts with 0
+  if (search === undefined) search = ""
+  const result = await movieServices.getAll(search, role, status, sortBy, perPage, pageNo)
   result.pageNo = result.pageNo + 1
   res.status(200).send({ data: result })
 })
