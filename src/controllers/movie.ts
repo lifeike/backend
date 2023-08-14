@@ -13,7 +13,7 @@ export const getAll = catchAsync(async (req: Request, res: Response) => {
   if (pageNo === undefined || pageNo <= 0) pageNo = 0
   else pageNo = pageNo - 1 //db pagination starts with 0
   if (search === undefined) search = ""
-  const result = await movieServices.getAll(search, role, status, sortBy, perPage, pageNo)
+  const result = await movieServices.getAll({ search, role, status, sortBy, perPage, pageNo })
   result.pageNo = result.pageNo + 1
   res.status(200).send({ data: result })
 })
