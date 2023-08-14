@@ -2,16 +2,16 @@ import db from "@/config/db/mongoDB"
 import { ObjectId } from "mongodb"
 import TABLES from "@/config/db/tables"
 
-export const getAll = async (filter: any, options: any) => {
+export const getAll = async (search: string, role: string, status: string, sortBy: string, perPage: number, pageNo: number) => {
   const movies = await db
     .collection(TABLES.MOVIES)
-    .find({ Title: { $regex: filter.search, $options: "i" } })
-    .skip(options.perPage * options.pageNo)
-    .limit(+options.perPage)
+    .find({ Title: { $regex: search, $options: "i" } })
+    .skip(perPage * pageNo)
+    .limit(+perPage)
     .sort({ Title: 1, Director: 1 })
     // .project({ Title: 1 }) // returned field control
     .toArray()
-  return { totalPages: Math.ceil(movies.length / options.perPage), pageNo: options.pageNo, perPage: options.perPage, movies }
+  return { totalPages: Math.ceil(movies.length / perPage), pageNo: pageNo, perPage: perPage, movies }
 }
 
 export const createOne = async (movie: any) => {
