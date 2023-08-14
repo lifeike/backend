@@ -9,9 +9,7 @@ import * as commonTypes from "@/types/common"
 // In src/controllers/workoutController.js
 export const getAll = catchAsync(async (req: Request, res: Response) => {
   let { search, role, status, sortBy, perPage, pageNo }: commonTypes.SearchParams = req.query
-  if (perPage === undefined || perPage <= 0) perPage = 10
-  if (pageNo === undefined || pageNo <= 0) pageNo = 0
-  else pageNo = pageNo - 1 //db pagination starts with 0
+  pageNo = (pageNo as number) - 1 //db pagination starts with 0
   if (search === undefined) search = ""
   const result = await movieServices.getAll({ search, role, status, sortBy, perPage, pageNo })
   result.pageNo = result.pageNo + 1

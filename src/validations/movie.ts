@@ -4,6 +4,8 @@ const { password, objectId } = require("./custom.validation")
 export const getAll = {
   query: Joi.object().keys({
     search: Joi.string().allow("").default(""),
+    role: Joi.string().allow("").default(""),
+    status: Joi.string().allow("").default(""),
     sortBy: Joi.string().allow("").default(""),
     pageNo: Joi.number().default(1),
     perPage: Joi.number().default(10),
