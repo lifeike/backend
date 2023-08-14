@@ -7,8 +7,9 @@ export const createOne = async (movie: any) => {
   const result = await movieModel.createOne(movie)
   return result
 }
-export const getAll = async (search, role, status, sortBy, perPage, pageNo) => {
-  const movies = await movieModel.getAll(filter, options)
+
+export const getAll = async (search: string, role: string, status: string, sortBy: string, perPage: number, pageNo: number) => {
+  const movies = await movieModel.getAll(search, role, status, sortBy, perPage, pageNo)
   return movies
 }
 
