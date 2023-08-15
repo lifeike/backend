@@ -7,8 +7,8 @@ const catchAsync = require("@/utils/catchAsync")
 import * as commonTypes from "@/types/common"
 
 // In src/controllers/workoutController.js
-export const getAll = catchAsync(async (req: Request, res: Response) => {
-  let { search, role, status, sortBy, perPage, pageNo } = req.query as unknown as commonTypes.SearchParams
+export const getAll = catchAsync(async (req: Request<{}, {}, {}, commonTypes.SearchParams>, res: Response) => {
+  let { search, role, status, sortBy, perPage, pageNo } = req.query
   pageNo = pageNo - 1 //db pagination starts with 0
   const result = await movieServices.getAll({ search, role, status, sortBy, perPage, pageNo })
   result.pageNo = result.pageNo + 1
