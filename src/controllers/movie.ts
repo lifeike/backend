@@ -9,7 +9,7 @@ import * as commonTypes from "@/types/common"
 export const getAll = catchAsync(async (req: commonTypes.SearchParams, res: Response) => {
   let { search, role, status, sortBy, perPage, pageNo } = req.query
   pageNo = pageNo - 1 //db pagination starts with 0
-  const result = await movieServices.getAll({ search, role, status, sortBy, perPage, pageNo })
+  const result = await movieServices.getAll(search, role, status, sortBy, perPage, pageNo)
   result.pageNo = result.pageNo + 1
   res.status(200).send({ data: result })
 })

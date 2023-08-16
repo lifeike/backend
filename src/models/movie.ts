@@ -3,16 +3,16 @@ import { ObjectId } from "mongodb"
 import TABLES from "@/config/db/tables"
 import * as commonTypes from "@/types/common"
 
-export const getAll = async (params: commonTypes.SearchParams) => {
+export const getAll = async (search: string, role: string, status: string, sortBy: string, perPage: number, pageNo: number) => {
   const movies = await db
     .collection(TABLES.MOVIES)
-    .find({ Title: { $regex: params.search, $options: "i" } })
-    .skip((params.pageNo as number) * (params.perPage as number))
-    .limit(params.perPage as number)
+    .find({ Title: { $regex: search, $options: "i" } })
+    .skip(pageNo * perPage)
+    .limit(perPage)
     .sort({ Title: 1, Director: 1 })
     // .project({ Title: 1 }) // returned field control
     .toArray()
-  return { totalPages: Math.ceil(movies.length / (params.perPage as number)), pageNo: params.pageNo, perPage: params.perPage, movies }
+  return { totalPages: Math.ceil(movies.length / (perPage as number)), pageNo: pageNo, perPage: perPage, movies }
 }
 
 export const createOne = async (movie: any) => {
