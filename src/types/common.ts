@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from "express"
-export type SearchParams = Request<
+export type RequestParams = Request<
   null,
   null,
   null,
