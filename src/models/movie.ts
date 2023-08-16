@@ -4,6 +4,7 @@ import TABLES from "@/config/db/tables"
 import * as commonTypes from "@/types/common"
 
 export const getAll = async (params: commonTypes.SearchParams) => {
+  console.log(params)
   const movies = await db
     .collection(TABLES.MOVIES)
     .find({ Title: { $regex: params.search, $options: "i" } })

@@ -5,6 +5,11 @@ const movieServices = require("@/services/movie")
 const catchAsync = require("@/utils/catchAsync")
 import * as commonTypes from "@/types/common"
 
+export const createOne = catchAsync(async (req: Request, res: Response) => {
+  console.log(req)
+  res.send("Create a new movie")
+})
+
 // In src/controllers/workoutController.js
 export const getAll = catchAsync(async (req: commonTypes.RequestParams, res: Response) => {
   let { search, role, status, sortBy, perPage, pageNo } = req.query
@@ -18,11 +23,6 @@ export const getOne = catchAsync(async (req: Request, res: Response) => {
   const movie = await movieServices.getOne(req.params.id)
   res.send(movie)
 })
-
-export const createOne = async (req: Request, res: Response) => {
-  console.log(req)
-  res.send("Create a new movie")
-}
 
 export const updateOne = async (req: Request, res: Response) => {
   const movie = await db.collection("movies").findOneAndUpdate({ _id: req.params.id }, { $set: { ...req.body } })
