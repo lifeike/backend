@@ -36,4 +36,4 @@ app.use((req, res, next) => {
 
 app.use(errorConverter)
 app.use(errorHandler)
-app.listen(config.port, () => console.log(`http server running on port ${config.port}`)) //http server 8080
+app.listen(config.port || 8080, () => console.log(`http server running on port ${config.port}`)) //http server 8080
