@@ -28,7 +28,7 @@ app.use(mongoSanitize())
 // gzip compression
 app.use(compression())
 
-// app.use("/api/v1", v1Router)
+app.use("/api/v1", v1Router)
 // send back a 404 error for any unknown api request
 app.use((req, res, next) => {
   next(new ApiError(httpStatus.NOT_FOUND, "Not found"))
