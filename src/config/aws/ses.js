@@ -1,6 +1,6 @@
-const { SESClient, SendEmailCommand } = require("@aws-sdk/client-ses")
-const credentials = require("./credentials")
-const { v4: uuidv4 } = require("uuid")
+import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses"
+import credentials from "./credentials"
+import { v4 as uuidv4 } from "uuid"
 
 const sesClient = new SESClient({
   region: "ca-central-1",
@@ -42,4 +42,4 @@ const createSendEmailCommand = (toAddress, fromAddress) => {
   })
 }
 
-module.exports = { sesClient, createSendEmailCommand }
+export default { sesClient, createSendEmailCommand }

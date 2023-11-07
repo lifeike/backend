@@ -1,6 +1,6 @@
 import Joi from "joi"
 import httpStatus from "http-status"
-const pick = require("@/utils/pick")
+import pick from "@/utils/pick"
 import ApiError from "@/utils/ApiError"
 import express, { Request, Response } from "express"
 
@@ -19,4 +19,4 @@ const validate = (schema: any) => (req: Request, res: Response, next: any) => {
   return next()
 }
 
-module.exports = validate
+export default validate
