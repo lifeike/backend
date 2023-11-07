@@ -50,5 +50,6 @@
   },
   "_moduleAliases": {
     "@": "./src"
-  }
+  },
+  "type": "module"
 }
