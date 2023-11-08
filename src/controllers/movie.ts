@@ -1,8 +1,8 @@
 import express, { Express, Request, Response } from "express"
 // const db = require("@/config/db/mongoDB")
 import db from "@/config/db/mongoDB"
-const movieServices = require("@/services/movie")
-const catchAsync = require("@/utils/catchAsync")
+import * as movieServices from "@/services/movie"
+import catchAsync from "@/utils/catchAsync"
 import * as commonTypes from "@/types/common"
 
 export const createOne = catchAsync(async (req: Request, res: Response) => {

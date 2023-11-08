@@ -1,7 +1,7 @@
 import express from "express"
 import * as movieController from "@/controllers/movie"
-const movieValidation = require("@/validations/movie")
-const validate = require("@/middlewares/validate")
+import movieValidation from "@/validations/movie"
+import validate from "@/middlewares/validate"
 
 const router = express.Router()
 router.route("/").get(validate(movieValidation.getAll), movieController.getAll).post(movieController.createOne)

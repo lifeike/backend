@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 //run swagger server
-swaggerDocs(app, config.port)
+// swaggerDocs(app, config.port)
 // set security HTTP headers
 app.use(helmet())
 // sanitize request data
