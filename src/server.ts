@@ -1,4 +1,3 @@
-import "module-alias/register" //@ path alias
 import express from "express"
 import helmet from "helmet"
 import mongoSanitize from "express-mongo-sanitize"
