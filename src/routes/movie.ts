@@ -1,6 +1,6 @@
 import express from "express"
 import * as movieController from "@/controllers/movie"
-import movieValidation from "@/validations/movie"
+import * as movieValidation from "@/validations/movie"
 import validate from "@/middlewares/validate"
 
 const router = express.Router()
